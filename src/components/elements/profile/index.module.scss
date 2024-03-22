@@ -1,0 +1,23 @@
+.profile {
+  display: flex;
+  align-items: center;
+
+  &__image {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    margin-left: 0.3rem;
+    overflow: hidden;
+    color: #fff;
+
+    svg {
+      font-size: 10px;
+    }
+  }
+}
