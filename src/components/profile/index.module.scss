@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .profile {
   display: flex;
   align-items: center;
@@ -14,7 +16,7 @@
     align-items: center;
     margin-left: 0.3rem;
     overflow: hidden;
-    color: #fff;
+    color: $white-90;
 
     svg {
       font-size: 10px;

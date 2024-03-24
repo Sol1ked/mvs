@@ -2,7 +2,14 @@ import React from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { store } from "./app/store"
-import { App } from "./App"
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { Layout } from "./layout"
+import "./index.scss"
+
+const router = createBrowserRouter([
+  { path: "/auth", element: <div>Auth</div> },
+  { path: "/", element: <Layout />, children: [] },
+])
 
 const container = document.getElementById("root")
 
@@ -12,7 +19,7 @@ if (container) {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <RouterProvider router={router} />
       </Provider>
     </React.StrictMode>,
   )

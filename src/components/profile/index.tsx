@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./index.module.scss"
-import test from "../../../assets/images/test.jpg"
+import test from "../../assets/images/test.jpg"
 import { FaCaretDown } from "react-icons/fa"
 
 export const Profile = () => {

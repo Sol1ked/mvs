@@ -1,7 +1,9 @@
+@import "../../variables";
+
 .input {
   background-color: transparent;
   outline: none;
-  color: #fff; //Вынос
+  color: $white-90;
   border: none;
   margin-left: 0.5rem;
 }

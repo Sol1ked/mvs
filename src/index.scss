@@ -1,6 +1,4 @@
-:root {
-  --v: 1;
-}
+@import "./variables";
 
 * {
   padding: 0;
@@ -10,7 +8,7 @@
 
 html,
 body {
-  background-color: #0f1011;
+  background-color: $black-10;
 }
 
 body {

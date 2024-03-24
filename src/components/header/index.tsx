@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import { Profile } from "../profile"
 import styles from "./index.module.scss"
-import { Search } from "../../UI/search"
-import logo from "../../../assets/images/logo.svg"
+import logo from "../../assets/images/logo.svg"
+import { Profile } from "../profile"
+import { Search } from "../search"
 
 export const Header = () => {
   return (
