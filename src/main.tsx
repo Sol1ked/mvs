@@ -5,10 +5,15 @@ import { store } from "./app/store"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { Layout } from "./layout"
 import "./index.scss"
+import { Movies } from "./pages/movies"
 
 const router = createBrowserRouter([
   { path: "/auth", element: <div>Auth</div> },
-  { path: "/", element: <Layout />, children: [] },
+  {
+    path: "/",
+    element: <Layout />,
+    children: [{ path: "", element: <Movies /> }],
+  },
 ])
 
 const container = document.getElementById("root")
