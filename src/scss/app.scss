@@ -1,10 +1,5 @@
 @import "./variables";
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+@import "./libs/normalize";
 
 html,
 body {
@@ -21,7 +16,8 @@ body {
   font-size: 16px;
 }
 
-.main {
+.wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }

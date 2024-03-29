@@ -5,5 +5,5 @@ type Props = {
 }
 
 export const Container: React.FC<Props> = ({ children }) => {
-  return <div>{children}</div>
+  return <>{children}</>
 }

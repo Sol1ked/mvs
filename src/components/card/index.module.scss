@@ -1,0 +1,41 @@
+@import "../../scss/_variables.scss";
+
+.card {
+  background: blue;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.slide {
+  width: 100%;
+  min-width: 1170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  padding: 48px;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    button {
+      width: 140px;
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .slide {
+    min-width: 1170px;
+  }
+}
