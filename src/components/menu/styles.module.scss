@@ -1,0 +1,22 @@
+.menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  background-color: red;
+  padding: 12px;
+
+  width: 35%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.open {
+  opacity: 1;
+}

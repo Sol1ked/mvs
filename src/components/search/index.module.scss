@@ -1,19 +1,10 @@
 @import "../../scss/variables";
 
 .search {
-  margin-left: 8rem;
   display: flex;
   align-items: center;
-  border-radius: 30px;
-  background-color: $black-90;
-  padding: 0.5rem 1rem;
 
-  &__content {
-    display: flex;
-    align-items: center;
-
-    svg {
-      color: $white-90;
-    }
+  svg {
+    color: $white-90;
   }
 }

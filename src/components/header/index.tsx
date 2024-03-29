@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom"
 import styles from "./index.module.scss"
 import logo from "../../assets/images/logo.svg"
-import { Profile } from "../profile"
-import { Search } from "../search"
+
+import { FiMenu } from "react-icons/fi"
+import { useState } from "react"
+import { Menu } from "../menu"
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   return (
     <div className={styles.header}>
-      <div className={styles.header__content}>
+      <div className={styles.left}>
         <a href="#">
           <img src={logo} alt="logo" />
         </a>
-        <Search />
       </div>
-      <Profile />
+      <div className={styles.right}>
+        <FiMenu onClick={() => setIsOpen(true)} />
+        {isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} />}
+      </div>
     </div>
   )
 }

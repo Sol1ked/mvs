@@ -1,6 +1,6 @@
 .movies {
-  display: flex;
   height: 540px;
+  display: flex;
   position: relative;
   overflow-x: hidden;
 }
@@ -8,8 +8,10 @@
 .actions {
   position: absolute;
   top: 45%;
-  display: flex;
+
   width: 100%;
+
+  display: flex;
   justify-content: space-between;
 
   svg {

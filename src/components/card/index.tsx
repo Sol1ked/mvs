@@ -18,17 +18,14 @@ export const Card: React.FC<Props> = ({ movie, typeCard }) => {
       cardClass = styles.slide
       content = (
         <div
-          className={`${styles.card} ${cardClass}`}
-          style={{
-            backgroundImage: `url(${movie.imgSrc})`,
-            transform: `translateX(${size}px)`,
-          }}
+          className={styles.slide}
+          style={{ backgroundImage: `url(${movie.imgSrc})` }}
         >
-          {/* <div className={styles.info}>
+          <div className={styles.info}>
             <h1>{movie.title}</h1>
             <p>{movie.desc}</p>
             <Button>Смотреть</Button>
-          </div> */}
+          </div>
         </div>
       )
       break

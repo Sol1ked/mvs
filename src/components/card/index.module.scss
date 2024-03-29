@@ -2,40 +2,45 @@
 
 .card {
   background: blue;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .slide {
-  width: 100%;
-  min-width: 1170px;
+  min-width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  position: relative;
+
   padding: 48px;
+}
 
-  .info {
-    display: flex;
-    flex-direction: column;
+.info {
+  max-width: 450px;
 
-    h1 {
-      margin: 0;
-    }
+  h1 {
+    color: $white-90;
+  }
 
-    p {
-      margin-bottom: 16px;
-    }
+  p {
+    color: $white-90;
+    margin-bottom: 16px;
+  }
 
-    button {
-      width: 140px;
-    }
+  button {
+    width: 140px;
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: $mobile) {
   .slide {
-    min-width: 1170px;
+    align-items: center;
+    text-align: center;
+  }
+  .info {
+    max-width: 300px;
   }
 }

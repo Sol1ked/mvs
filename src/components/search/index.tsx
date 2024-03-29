@@ -5,10 +5,7 @@ import { Input } from "../input"
 export const Search = () => {
   return (
     <div className={styles.search}>
-      <div className={styles.search__content}>
-        <IoSearch />
-        <Input />
-      </div>
+      <IoSearch />
     </div>
   )
 }
