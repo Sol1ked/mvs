@@ -1,0 +1,33 @@
+@import "../../../scss/variables";
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.7s ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 48px;
+}
+
+.info {
+  max-width: 450px;
+
+  h1 {
+    color: $white-90;
+  }
+
+  p {
+    color: $white-90;
+    margin-bottom: 16px;
+  }
+
+  button {
+    width: 140px;
+  }
+}

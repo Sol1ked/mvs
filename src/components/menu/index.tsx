@@ -40,11 +40,6 @@ const menuItems: MenuItem[] = [
       { id: 2, title: "Друзья", link: "/friends" },
     ],
   },
-  {
-    id: 3,
-    category: "Дополнительно",
-    items: [{ id: 1, title: "Выйти", link: "/logout" }],
-  },
 ]
 
 export const Menu: React.FC<Props> = ({ setIsOpen, isOpen }) => {
@@ -52,29 +47,32 @@ export const Menu: React.FC<Props> = ({ setIsOpen, isOpen }) => {
   const [isOpenId, setIsOpenId] = useState<number>(0)
 
   return (
-    <div className={menuClasses}>
-      {/* <IoClose onClick={() => setIsOpen(false)} /> */}
-      <ul className={styles.list}>
-        {menuItems.map((menuItem, index) => (
+    <div className={menuClasses} onMouseLeave={() => setIsOpenId(-1)}>
+      <nav className={styles.menu}>
+        {menuItems.map(menuItem => (
           <li
             key={menuItem.id}
             className={styles.item}
-            onClick={() => setIsOpenId(index + 1)}
+            onMouseEnter={() => setIsOpenId(menuItem.id)}
           >
-            <span className={styles.subtitle}>{menuItem.category}</span>
-            {menuItem.items.length > 0 && <FaCaretDown />}
+            <span className={styles.category}>{menuItem.category}</span>
+            {menuItem.category.length > 0 && <FaCaretDown />}
             {isOpenId === menuItem.id && (
-              <ul className={styles.sibList}>
-                {menuItem.items.map(item => (
-                  <li key={item.id} className={styles.subitem}>
-                    <Link to={item.link}>{item.title}</Link>
-                  </li>
+              <ul className={styles.subList}>
+                {menuItem.items.map(subItem => (
+                  <Link
+                    className={styles.subItem}
+                    key={subItem.id}
+                    to={subItem.link}
+                  >
+                    {subItem.title}
+                  </Link>
                 ))}
               </ul>
             )}
           </li>
         ))}
-      </ul>
+      </nav>
       <Button>Войти</Button>
     </div>
   )

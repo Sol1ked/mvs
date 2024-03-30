@@ -4,31 +4,14 @@ import styles from "./index.module.scss"
 import { Button } from "../button"
 
 type Props = {
-  typeCard: "slide" | "card" | "miniCard"
-  movie: any
+  typeCard: "card" | "miniCard"
 }
 
-export const Card: React.FC<Props> = ({ movie, typeCard }) => {
+export const Card: React.FC<Props> = ({ typeCard }) => {
   let cardClass = ""
-  let size = 0
   let content
 
   switch (typeCard) {
-    case "slide":
-      cardClass = styles.slide
-      content = (
-        <div
-          className={styles.slide}
-          style={{ backgroundImage: `url(${movie.imgSrc})` }}
-        >
-          <div className={styles.info}>
-            <h1>{movie.title}</h1>
-            <p>{movie.desc}</p>
-            <Button>Смотреть</Button>
-          </div>
-        </div>
-      )
-      break
     case "card":
       cardClass = styles.card
       break
