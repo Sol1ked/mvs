@@ -16,8 +16,7 @@ export const Header = () => {
         </a>
       </div>
       <div className={styles.right}>
-        <FiMenu onClick={() => setIsOpen(true)} />
-        {isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} />}
+        <Menu isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </div>
   )

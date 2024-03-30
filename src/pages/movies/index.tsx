@@ -24,8 +24,8 @@ const testMovies: any = [
 ]
 export const Movies = () => {
   return (
-    <>
+    <div>
       <CarouselSlider movies={testMovies} />
-    </>
+    </div>
   )
 }

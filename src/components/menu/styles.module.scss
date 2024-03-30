@@ -1,22 +1,21 @@
+@import "../../scss/variables";
+
 .menu {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
-  background-color: red;
-  padding: 12px;
-
-  width: 35%;
-  height: 100vh;
-
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  align-items: center;
+  gap: 16px;
+  position: relative;
 }
 
-.open {
-  opacity: 1;
+.list {
+  display: flex;
+  gap: 50px;
+}
+
+.sibList {
+  position: absolute;
+  z-index: 1;
+  background-color: $gray-50;
+  padding: 8px;
+  width: max-content;
 }
