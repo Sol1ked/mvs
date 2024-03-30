@@ -2,7 +2,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 import { Card } from "../card"
 import styles from "./index.module.scss"
 import { CarouselSlide } from "./carousel-slide"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type Props = {
   movies: any
@@ -10,17 +10,31 @@ type Props = {
 
 export const CarouselSlider: React.FC<Props> = ({ movies }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const slideWidth = (ref.current && ref.current.clientWidth) || 0
-  const [sizeSlider, setSizeSlider] = useState<number>(slideWidth)
+  const [slideWidth, setSlideWidth] = useState(0)
+  const [sizeSlider, setSizeSlider] = useState(0)
 
-  const allWidthSlides =
-    ref.current && (movies.length - 1) * ref.current.clientWidth
+  useEffect(() => {
+    const updateSlideWidth = () => {
+      if (ref.current) {
+        setSlideWidth(ref.current.clientWidth)
+        setSizeSlider(0)
+      }
+    }
+    window.addEventListener("resize", updateSlideWidth)
+    updateSlideWidth()
+
+    return () => {
+      window.removeEventListener("resize", updateSlideWidth)
+    }
+  }, [])
+
+  const allWidthSlides = (movies.length - 1) * slideWidth
 
   const nextSlide = () => {
-    if (ref.current) {
-      const width = ref.current.clientWidth
-      setSizeSlider(prevSizeSlider => prevSizeSlider - width)
-    }
+    setSizeSlider(
+      prevSizeSlider =>
+        prevSizeSlider - (ref.current ? ref.current.clientWidth : 0),
+    )
 
     if (-sizeSlider === allWidthSlides) {
       setSizeSlider(0)
@@ -28,13 +42,13 @@ export const CarouselSlider: React.FC<Props> = ({ movies }) => {
   }
 
   const prevSlide = () => {
-    if (ref.current) {
-      const width = ref.current.clientWidth
-      setSizeSlider(prevSizeSlider => prevSizeSlider + width)
-    }
+    setSizeSlider(
+      prevSizeSlider =>
+        prevSizeSlider + (ref.current ? ref.current.clientWidth : 0),
+    )
 
     if (sizeSlider === 0) {
-      setSizeSlider(-(sizeSlider * (movies.length - 1)))
+      setSizeSlider(-(slideWidth * (movies.length - 1)))
     }
   }
 
@@ -44,8 +58,8 @@ export const CarouselSlider: React.FC<Props> = ({ movies }) => {
         <CarouselSlide key={movie.id} movie={movie} sizeSlider={sizeSlider} />
       ))}
       <div className={styles.actions}>
-        <FaAngleLeft onClick={() => prevSlide()} />
-        <FaAngleRight onClick={() => nextSlide()} />
+        <FaAngleLeft onClick={prevSlide} />
+        <FaAngleRight onClick={nextSlide} />
       </div>
     </div>
   )
