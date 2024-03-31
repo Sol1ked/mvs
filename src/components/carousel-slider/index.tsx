@@ -6,12 +6,28 @@ import { useEffect, useRef, useState } from "react"
 
 type Props = {
   movies: any
+  typeSliderElem: "slide" | "card"
+  typeCard?: "default" | "watched"
 }
 
-export const CarouselSlider: React.FC<Props> = ({ movies }) => {
+export const CarouselSlider: React.FC<Props> = ({
+  movies,
+  typeSliderElem,
+  typeCard,
+}) => {
   const ref = useRef<HTMLDivElement>(null)
+
   const [slideWidth, setSlideWidth] = useState(0)
   const [sizeSlider, setSizeSlider] = useState(0)
+  let gapSize = 32
+
+  console.log(slideWidth)
+
+  const allWidthSlides = ref.current
+    ? (ref.current.children[0].clientWidth + gapSize) * (movies.length - 1)
+    : 0
+
+  console.log(allWidthSlides)
 
   useEffect(() => {
     const updateSlideWidth = () => {
@@ -28,15 +44,13 @@ export const CarouselSlider: React.FC<Props> = ({ movies }) => {
     }
   }, [])
 
-  const allWidthSlides = (movies.length - 1) * slideWidth
-
   const nextSlide = () => {
     setSizeSlider(
       prevSizeSlider =>
-        prevSizeSlider - (ref.current ? ref.current.clientWidth : 0),
+        prevSizeSlider - (ref.current ? ref.current.clientWidth + gapSize : 0),
     )
 
-    if (-sizeSlider === allWidthSlides) {
+    if (-sizeSlider > allWidthSlides) {
       setSizeSlider(0)
     }
   }
@@ -44,19 +58,29 @@ export const CarouselSlider: React.FC<Props> = ({ movies }) => {
   const prevSlide = () => {
     setSizeSlider(
       prevSizeSlider =>
-        prevSizeSlider + (ref.current ? ref.current.clientWidth : 0),
+        prevSizeSlider + (ref.current ? ref.current.clientWidth + gapSize : 0),
     )
 
     if (sizeSlider === 0) {
-      setSizeSlider(-(slideWidth * (movies.length - 1)))
+      setSizeSlider(-allWidthSlides)
+      console.log(allWidthSlides)
     }
   }
 
   return (
     <div className={styles.movies} ref={ref}>
-      {movies.map((movie: any) => (
-        <CarouselSlide key={movie.id} movie={movie} sizeSlider={sizeSlider} />
-      ))}
+      {movies.map((movie: any) =>
+        typeSliderElem === "slide" ? (
+          <CarouselSlide key={movie.id} movie={movie} sizeSlider={sizeSlider} />
+        ) : (
+          <Card
+            typeCard={typeCard}
+            key={movie.id}
+            movie={movie}
+            sizeSlider={sizeSlider}
+          />
+        ),
+      )}
       <div className={styles.actions}>
         <FaAngleLeft onClick={prevSlide} />
         <FaAngleRight onClick={nextSlide} />

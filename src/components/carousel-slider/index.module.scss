@@ -1,9 +1,11 @@
 .movies {
-  height: 540px;
+  height: 100%;
   display: flex;
   position: relative;
   overflow-x: hidden;
-  border-radius: 15px;
+  gap: 32px;
+
+  transition: all 0.7s ease-in-out;
 }
 
 .actions {

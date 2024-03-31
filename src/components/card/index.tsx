@@ -1,24 +1,37 @@
 import React from "react"
 
 import styles from "./index.module.scss"
-import { Button } from "../button"
 
 type Props = {
-  typeCard: "card" | "miniCard"
+  typeCard?: "default" | "watched" | "mini"
+  movie: any
+  sizeSlider: number
 }
 
-export const Card: React.FC<Props> = ({ typeCard }) => {
+export const Card: React.FC<Props> = ({ typeCard, movie, sizeSlider }) => {
   let cardClass = ""
-  let content
 
   switch (typeCard) {
-    case "card":
-      cardClass = styles.card
+    case "default":
+      cardClass = styles.default
       break
-    case "miniCard":
-      cardClass = styles.miniCard
+    case "watched":
+      cardClass = styles.watched
       break
   }
 
-  return <>{content}</>
+  return (
+    <div
+      className={cardClass}
+      style={{
+        transform: `translate(${sizeSlider}px)`,
+      }}
+    >
+      <img src={movie.imgSrc} alt="movie-card" />
+      <div className={styles.info}>
+        <h3>{movie.title}</h3>
+        <p>{movie.desc}</p>
+      </div>
+    </div>
+  )
 }
