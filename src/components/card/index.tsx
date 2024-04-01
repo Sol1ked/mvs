@@ -21,12 +21,7 @@ export const Card: React.FC<Props> = ({ typeCard, movie, sizeSlider }) => {
   }
 
   return (
-    <div
-      className={cardClass}
-      style={{
-        transform: `translate(${sizeSlider}px)`,
-      }}
-    >
+    <div className={cardClass}>
       <img src={movie.imgSrc} alt="movie-card" />
       <div className={styles.info}>
         <h3>{movie.title}</h3>

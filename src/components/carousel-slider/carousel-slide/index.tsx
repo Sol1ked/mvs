@@ -8,7 +8,6 @@ export const CarouselSlide = ({ movie, sizeSlider }: any) => {
       className={styles.slide}
       style={{
         backgroundImage: `url(${movie.imgSrc})`,
-        transform: `translate(${sizeSlider}px)`,
       }}
     >
       <div className={styles.info}>

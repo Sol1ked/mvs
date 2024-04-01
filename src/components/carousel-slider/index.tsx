@@ -16,18 +16,10 @@ export const CarouselSlider: React.FC<Props> = ({
   typeCard,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
-
   const [slideWidth, setSlideWidth] = useState(0)
   const [sizeSlider, setSizeSlider] = useState(0)
-  let gapSize = 32
-
-  console.log(slideWidth)
-
-  const allWidthSlides = ref.current
-    ? (ref.current.children[0].clientWidth + gapSize) * (movies.length - 1)
-    : 0
-
-  console.log(allWidthSlides)
+  const [disableButtons, setDisableButtons] = useState(false)
+  const gapSize = 32
 
   useEffect(() => {
     const updateSlideWidth = () => {
@@ -44,43 +36,78 @@ export const CarouselSlider: React.FC<Props> = ({
     }
   }, [])
 
-  const nextSlide = () => {
-    setSizeSlider(
-      prevSizeSlider =>
-        prevSizeSlider - (ref.current ? ref.current.clientWidth + gapSize : 0),
-    )
+  const isPosW = ref.current
+    ? Math.floor(
+        ((ref.current?.children[0].clientWidth + gapSize) * movies.length) /
+          ref.current.clientWidth,
+      )
+    : 0
 
-    if (-sizeSlider > allWidthSlides) {
+  const delayOnClick = () => {
+    setDisableButtons(true)
+    setTimeout(() => {
+      setDisableButtons(false)
+    }, 700)
+  }
+
+  const totalWidth = ref.current
+    ? (ref.current.clientWidth + gapSize) *
+      (ref.current.children[0].clientWidth > 1000 ? isPosW - 1 : isPosW)
+    : 0
+
+  const nextSlide = () => {
+    if (!disableButtons) {
+      setSizeSlider(
+        prevSizeSlider =>
+          prevSizeSlider -
+          (ref.current ? ref.current.clientWidth + gapSize : 0),
+      )
+      delayOnClick()
+    }
+
+    if (-sizeSlider >= totalWidth) {
       setSizeSlider(0)
     }
   }
 
   const prevSlide = () => {
-    setSizeSlider(
-      prevSizeSlider =>
-        prevSizeSlider + (ref.current ? ref.current.clientWidth + gapSize : 0),
-    )
-
-    if (sizeSlider === 0) {
-      setSizeSlider(-allWidthSlides)
-      console.log(allWidthSlides)
+    if (!disableButtons) {
+      setSizeSlider(
+        prevSizeSlider =>
+          prevSizeSlider +
+          (ref.current ? ref.current.clientWidth + gapSize : 0),
+      )
+      delayOnClick()
+    }
+    if (ref.current && sizeSlider >= 0) {
+      setSizeSlider(-totalWidth)
     }
   }
 
   return (
-    <div className={styles.movies} ref={ref}>
-      {movies.map((movie: any) =>
-        typeSliderElem === "slide" ? (
-          <CarouselSlide key={movie.id} movie={movie} sizeSlider={sizeSlider} />
-        ) : (
-          <Card
-            typeCard={typeCard}
-            key={movie.id}
-            movie={movie}
-            sizeSlider={sizeSlider}
-          />
-        ),
-      )}
+    <div className={styles.movies}>
+      <div
+        className={styles.container}
+        ref={ref}
+        style={{ transform: `translate(${sizeSlider}px)` }}
+      >
+        {movies.map((movie: any) =>
+          typeSliderElem === "slide" ? (
+            <CarouselSlide
+              key={movie.id}
+              movie={movie}
+              sizeSlider={sizeSlider}
+            />
+          ) : (
+            <Card
+              typeCard={typeCard}
+              key={movie.id}
+              movie={movie}
+              sizeSlider={sizeSlider}
+            />
+          ),
+        )}
+      </div>
       <div className={styles.actions}>
         <FaAngleLeft onClick={prevSlide} />
         <FaAngleRight onClick={nextSlide} />
