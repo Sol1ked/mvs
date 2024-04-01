@@ -19,13 +19,14 @@ export const CarouselSlider: React.FC<Props> = ({
   const [slideWidth, setSlideWidth] = useState(0)
   const [sizeSlider, setSizeSlider] = useState(0)
   const [disableButtons, setDisableButtons] = useState(false)
+  const [index, setIndex] = useState(0)
   const gapSize = 32
 
   useEffect(() => {
     const updateSlideWidth = () => {
       if (ref.current) {
         setSlideWidth(ref.current.clientWidth)
-        setSizeSlider(0)
+        setSizeSlider(-index * (ref.current.clientWidth + gapSize))
       }
     }
     window.addEventListener("resize", updateSlideWidth)
@@ -34,7 +35,7 @@ export const CarouselSlider: React.FC<Props> = ({
     return () => {
       window.removeEventListener("resize", updateSlideWidth)
     }
-  }, [])
+  }, [index])
 
   const isPosW = ref.current
     ? Math.floor(
@@ -62,11 +63,13 @@ export const CarouselSlider: React.FC<Props> = ({
           prevSizeSlider -
           (ref.current ? ref.current.clientWidth + gapSize : 0),
       )
+      setIndex(prevState => prevState + 1)
       delayOnClick()
     }
 
     if (-sizeSlider >= totalWidth) {
       setSizeSlider(0)
+      setIndex(0)
     }
   }
 
@@ -78,9 +81,11 @@ export const CarouselSlider: React.FC<Props> = ({
           (ref.current ? ref.current.clientWidth + gapSize : 0),
       )
       delayOnClick()
+      setIndex(prevState => prevState - 1)
     }
     if (ref.current && sizeSlider >= 0) {
       setSizeSlider(-totalWidth)
+      setIndex(0)
     }
   }
 

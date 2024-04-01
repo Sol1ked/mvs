@@ -16,12 +16,12 @@ const menuItems: MenuItem[] = [
   {
     id: 1,
     category: "Главная",
-    link: "/",
+    link: "",
   },
   {
     id: 2,
     category: "Фильмы",
-    link: "/movies",
+    link: "movies",
   },
 ]
 
