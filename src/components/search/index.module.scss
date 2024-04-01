@@ -3,8 +3,12 @@
 .search {
   display: flex;
   align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-weight: 600;
 
   svg {
-    color: $white-90;
+    padding-top: 2px;
+    font-size: 18px;
   }
 }

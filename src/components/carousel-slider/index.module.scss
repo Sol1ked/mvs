@@ -22,10 +22,12 @@
   svg {
     font-size: 32px;
     text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       background: #000;
-      border-radius: 50%;
     }
   }
 }

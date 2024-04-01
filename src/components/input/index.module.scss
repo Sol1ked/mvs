@@ -1,9 +1,11 @@
 @import "../../scss/variables";
 
 .input {
-  background-color: transparent;
-  outline: none;
   color: $white-90;
+  background-color: transparent;
+
+  outline: none;
   border: none;
+
   margin-left: 0.5rem;
 }

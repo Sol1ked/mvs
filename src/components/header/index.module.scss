@@ -6,13 +6,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
 }
 
-.right {
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
   svg {
     font-size: 24px;
   }
+
+  button {
+    margin-left: auto;
+  }
 }
 
-@media (max-width: $mobile) {
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
