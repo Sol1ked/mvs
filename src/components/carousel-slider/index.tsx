@@ -22,11 +22,23 @@ export const CarouselSlider: React.FC<Props> = ({
   const [index, setIndex] = useState(0)
   const gapSize = 32
 
+  const isPosW = ref.current
+    ? Math.floor(
+        ((ref.current?.children[0].clientWidth + gapSize) * movies.length) /
+          ref.current.clientWidth,
+      )
+    : 0
+
+  const totalWidth = ref.current
+    ? (ref.current.clientWidth + gapSize) *
+      (ref.current.children[0].clientWidth > 1000 ? isPosW - 1 : isPosW)
+    : 0
+
   useEffect(() => {
     const updateSlideWidth = () => {
       if (ref.current) {
         setSlideWidth(ref.current.clientWidth)
-        setSizeSlider(-index * (ref.current.clientWidth + gapSize))
+        setSizeSlider(0)
       }
     }
     window.addEventListener("resize", updateSlideWidth)
@@ -35,14 +47,7 @@ export const CarouselSlider: React.FC<Props> = ({
     return () => {
       window.removeEventListener("resize", updateSlideWidth)
     }
-  }, [index])
-
-  const isPosW = ref.current
-    ? Math.floor(
-        ((ref.current?.children[0].clientWidth + gapSize) * movies.length) /
-          ref.current.clientWidth,
-      )
-    : 0
+  }, [])
 
   const delayOnClick = () => {
     setDisableButtons(true)
@@ -51,10 +56,11 @@ export const CarouselSlider: React.FC<Props> = ({
     }, 700)
   }
 
-  const totalWidth = ref.current
-    ? (ref.current.clientWidth + gapSize) *
-      (ref.current.children[0].clientWidth > 1000 ? isPosW - 1 : isPosW)
-    : 0
+  if (ref.current) {
+    if (ref.current.clientWidth < totalWidth) {
+      console.log(1)
+    }
+  }
 
   const nextSlide = () => {
     if (!disableButtons) {
@@ -113,10 +119,12 @@ export const CarouselSlider: React.FC<Props> = ({
           ),
         )}
       </div>
-      <div className={styles.actions}>
-        <FaAngleLeft onClick={prevSlide} />
-        <FaAngleRight onClick={nextSlide} />
-      </div>
+      {ref.current && ref.current.clientWidth < totalWidth && (
+        <div className={styles.actions}>
+          <FaAngleLeft onClick={prevSlide} />
+          <FaAngleRight onClick={nextSlide} />
+        </div>
+      )}
     </div>
   )
 }

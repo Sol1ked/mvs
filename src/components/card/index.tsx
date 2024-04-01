@@ -9,14 +9,14 @@ type Props = {
 }
 
 export const Card: React.FC<Props> = ({ typeCard, movie, sizeSlider }) => {
-  let cardClass = ""
+  let cardClass = `${styles.card}`
 
   switch (typeCard) {
     case "default":
-      cardClass = styles.default
+      cardClass += ` ${styles.default}`
       break
     case "watched":
-      cardClass = styles.watched
+      cardClass += ` ${styles.watched}`
       break
   }
 

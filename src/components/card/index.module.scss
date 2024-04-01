@@ -1,31 +1,35 @@
 @import "../../scss/_variables.scss";
 
-img {
-  max-width: 100%;
-  object-fit: cover;
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 12px;
+  }
 }
 
 .info {
-  font-size: 16px;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.default {
-  min-width: 202px;
-
+.watched {
+  min-width: 300px;
   img {
-    height: 274px;
-    width: 100%;
+    height: 180px;
   }
 }
 
-.watched {
-  min-width: 300px;
-
+.default {
+  min-width: 200px;
   img {
-    height: 180px;
-    width: 100%;
+    height: 274px;
   }
 }

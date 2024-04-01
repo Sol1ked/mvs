@@ -1,11 +1,11 @@
 .movies {
   position: relative;
   overflow: hidden;
-  height: 100%;
 }
 
 .container {
   display: flex;
+  justify-content: flex-start;
   gap: 32px;
   transition: all 0.7s ease-in-out;
 }

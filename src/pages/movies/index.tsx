@@ -85,11 +85,13 @@ export const Movies = () => {
         movies={testMovies}
         typeSliderElem={"card"}
         typeCard={"watched"}
+        title={"Вы смотрели"}
       />
       <CarouselBlock
         movies={testMovies}
         typeSliderElem={"card"}
         typeCard={"default"}
+        title={"Для вас"}
       />
     </div>
   )
