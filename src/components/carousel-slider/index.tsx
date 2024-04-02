@@ -19,7 +19,6 @@ export const CarouselSlider: React.FC<Props> = ({
   const [slideWidth, setSlideWidth] = useState(0)
   const [sizeSlider, setSizeSlider] = useState(0)
   const [disableButtons, setDisableButtons] = useState(false)
-  const [index, setIndex] = useState(0)
   const gapSize = 32
 
   const isPosW = ref.current
@@ -29,10 +28,7 @@ export const CarouselSlider: React.FC<Props> = ({
       )
     : 0
 
-  const totalWidth = ref.current
-    ? (ref.current.clientWidth + gapSize) *
-      (ref.current.children[0].clientWidth > 1000 ? isPosW - 1 : isPosW)
-    : 0
+  const totalWidth = ref.current ? ref.current.clientWidth * isPosW : 0
 
   useEffect(() => {
     const updateSlideWidth = () => {
@@ -56,12 +52,6 @@ export const CarouselSlider: React.FC<Props> = ({
     }, 700)
   }
 
-  if (ref.current) {
-    if (ref.current.clientWidth < totalWidth) {
-      console.log(1)
-    }
-  }
-
   const nextSlide = () => {
     if (!disableButtons) {
       setSizeSlider(
@@ -69,13 +59,12 @@ export const CarouselSlider: React.FC<Props> = ({
           prevSizeSlider -
           (ref.current ? ref.current.clientWidth + gapSize : 0),
       )
-      setIndex(prevState => prevState + 1)
+
       delayOnClick()
     }
 
     if (-sizeSlider >= totalWidth) {
       setSizeSlider(0)
-      setIndex(0)
     }
   }
 
@@ -83,15 +72,12 @@ export const CarouselSlider: React.FC<Props> = ({
     if (!disableButtons) {
       setSizeSlider(
         prevSizeSlider =>
-          prevSizeSlider +
-          (ref.current ? ref.current.clientWidth + gapSize : 0),
+          prevSizeSlider + (ref.current ? ref.current.clientWidth : 0),
       )
       delayOnClick()
-      setIndex(prevState => prevState - 1)
     }
     if (ref.current && sizeSlider >= 0) {
-      setSizeSlider(-totalWidth)
-      setIndex(0)
+      setSizeSlider(-totalWidth + ref.current?.clientWidth)
     }
   }
 

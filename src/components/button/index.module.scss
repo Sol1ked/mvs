@@ -9,4 +9,23 @@
   outline: none;
   border: none;
   cursor: pointer;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+}
+
+.text {
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+
+  svg {
+    padding-top: 2px;
+  }
+
+  &:hover {
+    color: $white-10;
+  }
 }

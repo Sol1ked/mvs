@@ -34,3 +34,39 @@
     font-size: 12px;
   }
 }
+
+.menuItemMb {
+  display: none;
+}
+
+@media screen and (max-width: $media-2) {
+  .fixedMenu {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: $black-10;
+    padding: 8px 0;
+
+    .menuList {
+      justify-content: space-evenly;
+    }
+
+    .menuItem {
+      display: none;
+    }
+
+    .menuItemMb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      font-size: 12px;
+
+      svg {
+        font-size: 24px;
+      }
+    }
+  }
+}
