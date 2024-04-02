@@ -21,15 +21,6 @@ export const CarouselSlider: React.FC<Props> = ({
   const [disableButtons, setDisableButtons] = useState(false)
   const gapSize = 32
 
-  const isPosW = ref.current
-    ? Math.floor(
-        ((ref.current?.children[0].clientWidth + gapSize) * movies.length) /
-          ref.current.clientWidth,
-      )
-    : 0
-
-  const totalWidth = ref.current ? ref.current.clientWidth * isPosW : 0
-
   useEffect(() => {
     const updateSlideWidth = () => {
       if (ref.current) {
@@ -52,14 +43,23 @@ export const CarouselSlider: React.FC<Props> = ({
     }, 700)
   }
 
+  const isClassNameIncluded = (
+    ref: React.RefObject<HTMLDivElement>,
+    className: string,
+  ) => {
+    return (
+      ref &&
+      ref.current &&
+      ref.current.children[0].className.includes(className)
+    )
+  }
+
   const nextSlide = () => {
     if (!disableButtons) {
       setSizeSlider(
         prevSizeSlider =>
-          prevSizeSlider -
-          (ref.current ? ref.current.clientWidth + gapSize : 0),
+          prevSizeSlider - (ref.current ? ref.current.clientWidth : 0),
       )
-
       delayOnClick()
     }
 
@@ -70,16 +70,34 @@ export const CarouselSlider: React.FC<Props> = ({
 
   const prevSlide = () => {
     if (!disableButtons) {
+      const isSlide = isClassNameIncluded(ref, "_slide")
+      const slideWidth = ref.current
+        ? isSlide
+          ? ref.current.clientWidth + gapSize
+          : ref.current.clientWidth
+        : 0
+
       setSizeSlider(
-        prevSizeSlider =>
-          prevSizeSlider + (ref.current ? ref.current.clientWidth : 0),
+        prevSizeSlider => prevSizeSlider + (ref.current ? slideWidth : 0),
       )
       delayOnClick()
     }
+
     if (ref.current && sizeSlider >= 0) {
-      setSizeSlider(-totalWidth + ref.current?.clientWidth)
+      const isSlide = isClassNameIncluded(ref, "_slide")
+      const slideWidth = isSlide ? ref.current.clientWidth + gapSize : 0
+
+      setSizeSlider(isSlide ? -(slideWidth * (movies.length - 1)) : -totalWidth)
     }
   }
+
+  const isPosW = ref.current
+    ? Math.floor(
+        ((ref.current?.children[0].clientWidth + gapSize) * movies.length) /
+          ref.current.clientWidth,
+      )
+    : 0
+  const totalWidth = ref.current ? ref.current.clientWidth * isPosW : 0
 
   return (
     <div className={styles.movies}>
