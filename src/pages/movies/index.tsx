@@ -1,4 +1,4 @@
-import test3 from "../../assets/images/test3.jpg"
+import test3 from "../../assets/images/test4.jpg"
 import { CarouselBlock } from "../../components/carousel-block"
 import { CarouselSlider } from "../../components/carousel-slider"
 import styles from "./index.module.scss"

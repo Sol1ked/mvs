@@ -54,12 +54,19 @@ export const CarouselSlider: React.FC<Props> = ({
     )
   }
 
+  const isSlide = isClassNameIncluded(ref, "_slide")
+
+  const calculateSlideWidth = () => {
+    return ref.current
+      ? isSlide
+        ? ref.current.clientWidth + gapSize
+        : ref.current.clientWidth
+      : 0
+  }
+
   const nextSlide = () => {
     if (!disableButtons) {
-      setSizeSlider(
-        prevSizeSlider =>
-          prevSizeSlider - (ref.current ? ref.current.clientWidth : 0),
-      )
+      setSizeSlider(prevSizeSlider => prevSizeSlider - calculateSlideWidth())
       delayOnClick()
     }
 
@@ -70,34 +77,34 @@ export const CarouselSlider: React.FC<Props> = ({
 
   const prevSlide = () => {
     if (!disableButtons) {
-      const isSlide = isClassNameIncluded(ref, "_slide")
-      const slideWidth = ref.current
-        ? isSlide
-          ? ref.current.clientWidth + gapSize
-          : ref.current.clientWidth
-        : 0
-
-      setSizeSlider(
-        prevSizeSlider => prevSizeSlider + (ref.current ? slideWidth : 0),
-      )
+      setSizeSlider(prevSizeSlider => prevSizeSlider + calculateSlideWidth())
       delayOnClick()
     }
 
     if (ref.current && sizeSlider >= 0) {
-      const isSlide = isClassNameIncluded(ref, "_slide")
-      const slideWidth = isSlide ? ref.current.clientWidth + gapSize : 0
-
-      setSizeSlider(isSlide ? -(slideWidth * (movies.length - 1)) : -totalWidth)
+      const slideWidth = calculateSlideWidth()
+      setSizeSlider(
+        isSlide
+          ? -(slideWidth * (isSlide ? movies.length - 1 : movies.length))
+          : -totalWidth,
+      )
     }
   }
 
-  const isPosW = ref.current
-    ? Math.floor(
-        ((ref.current?.children[0].clientWidth + gapSize) * movies.length) /
-          ref.current.clientWidth,
-      )
-    : 0
-  const totalWidth = ref.current ? ref.current.clientWidth * isPosW : 0
+  const isMobile = ref.current ? ref.current.clientWidth <= 400 : 0
+
+  const calculateTotalWidth = () => {
+    return ref.current
+      ? ref.current.clientWidth *
+          Math.floor(
+            ((ref.current?.children[0].clientWidth + gapSize) *
+              (isMobile || isSlide ? movies.length - 1 : movies.length)) /
+              ref.current.clientWidth,
+          )
+      : 0
+  }
+
+  const totalWidth = calculateTotalWidth()
 
   return (
     <div className={styles.movies}>
