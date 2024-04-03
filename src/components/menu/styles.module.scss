@@ -26,7 +26,6 @@
 
     &:hover {
       color: $white-90;
-      transition: all 0.3s ease-in-out;
     }
   }
 
@@ -35,34 +34,51 @@
   }
 }
 
-.menuItemMb {
+.active {
+  a {
+    color: $white-90;
+  }
+}
+
+.smallScreen {
   display: none;
 }
 
+.largeScreen {
+  display: block;
+}
+
 @media screen and (max-width: $media-2) {
-  .fixedMenu {
+  .menu {
+    display: block;
     position: fixed;
     bottom: 0;
     right: 0;
     z-index: 1;
     width: 100%;
-    background-color: $black-10;
+    backdrop-filter: blur(18px);
     padding: 8px 0;
 
     .menuList {
+      display: flex;
+      align-items: center;
       justify-content: space-evenly;
     }
 
     .menuItem {
-      display: none;
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
-    .menuItemMb {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .active .largeScreen {
+      color: $white-90;
+    }
 
-      font-size: 12px;
+    .smallScreen {
+      display: block;
 
       svg {
         font-size: 24px;

@@ -7,15 +7,12 @@
   justify-content: space-between;
 }
 
-.menu {
-  display: flex;
+.logo {
+  max-width: 100%;
 }
 
 @media screen and (max-width: $media-1) {
 }
 
 @media screen and (max-width: $media-2) {
-  .menu {
-    display: none;
-  }
 }

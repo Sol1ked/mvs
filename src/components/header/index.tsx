@@ -14,7 +14,7 @@ export const Header = () => {
         </Link>
       </div>
       <Menu />
-      <div className={styles.avatar}>
+      <div className={styles.auth}>
         <Button typeButton={"full"}>
           <Link to="/auth">Войти</Link>
         </Button>

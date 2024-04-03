@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./styles.module.scss"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { FaHome } from "react-icons/fa"
 import { MdLocalMovies } from "react-icons/md"
 import { IoSearch } from "react-icons/io5"
@@ -18,39 +18,43 @@ const menuItems: MenuItem[] = [
   {
     id: 1,
     category: "Главная",
-    link: "",
+    link: "/",
     icon: <FaHome />,
   },
   {
     id: 2,
     category: "Фильмы",
-    link: "movies",
+    link: "/movies",
     icon: <MdLocalMovies />,
   },
   {
     id: 3,
     category: "Поиск",
-    link: "search",
+    link: "/search",
     icon: <IoSearch />,
   },
 ]
 
 export const Menu: React.FC<Props> = ({}) => {
+  const location = useLocation()
+
   return (
-    <div className={(styles.menu, styles.fixedMenu)}>
-      {/* <nav className={styles.menuList}>
+    <div className={styles.menu}>
+      <nav className={styles.menuList}>
         {menuItems.map(menuItem => (
-          <React.Fragment key={menuItem.id}>
-            <li className={styles.menuItem}>
-              <Link to={`/${menuItem.link}`}>{menuItem.category}</Link>
-            </li>
-            <li key={menuItem.id} className={styles.menuItemMb}>
-              <Link to={`/${menuItem.link}`}>{menuItem.icon}</Link>
-              {menuItem.category}
-            </li>
-          </React.Fragment>
+          <li
+            key={menuItem.id}
+            className={`${styles.menuItem} ${
+              menuItem.link === location.pathname ? styles.active : ""
+            }`}
+          >
+            <Link to={`${menuItem.link}`}>
+              <span className={styles.smallScreen}>{menuItem.icon}</span>
+              <span className={styles.largeScreen}>{menuItem.category}</span>
+            </Link>
+          </li>
         ))}
-      </nav> */}
+      </nav>
     </div>
   )
 }
