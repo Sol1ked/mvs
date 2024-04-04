@@ -7,9 +7,10 @@ import { Layout } from "./components/layout"
 import "./scss/app.scss"
 import { Movies } from "./pages/movies"
 import { Search } from "./pages/search"
+import { Auth } from "./pages/auth"
 
 const router = createBrowserRouter([
-  { path: "/auth", element: <div>Auth</div> },
+  { path: "/auth", element: <Auth /> },
   {
     path: "/",
     element: <Layout />,
