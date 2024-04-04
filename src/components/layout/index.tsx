@@ -1,7 +1,7 @@
-import { Header } from "../components/header"
-import { Container } from "../components/container"
+import { Header } from "../header"
+import { Container } from "../container"
 import { Outlet } from "react-router-dom"
-import { Menu } from "../components/menu"
+import { Menu } from "../menu"
 
 export const Layout = () => {
   return (

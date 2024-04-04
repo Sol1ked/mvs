@@ -1,15 +1,11 @@
 @import "../../scss/variables";
 
-.search {
+.searchFiled {
   display: flex;
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  font-weight: 600;
-  fill: red;
-
-  svg {
-    padding-top: 2px;
-    font-size: 18px;
-  }
+  padding: 12px 8px;
+  border: 1px solid $gray-10;
+  border-radius: 15px;
 }
