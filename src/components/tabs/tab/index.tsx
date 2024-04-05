@@ -1,24 +1,27 @@
-// Tab.tsx
 import React, { ReactNode } from "react"
+import styles from "./index.module.scss"
 
 type TabProps = {
-  label?: string
+  label: string
   selected: string
-  onClick: () => void
-  children: ReactNode
+  setSelected: () => void
   name: string
 }
 
 export const Tab: React.FC<TabProps> = ({
   selected,
-  onClick,
-  children,
+  setSelected,
+  label,
   name,
 }) => {
+  let isActive = selected === name
+
   return (
-    <div onClick={onClick}>
-      {name}
-      {selected && <div>{children}</div>}
+    <div
+      onClick={setSelected}
+      className={isActive ? `${styles.active} ${styles.tab}` : styles.tab}
+    >
+      <p className={styles.tabContent}>{label}</p>
     </div>
   )
 }

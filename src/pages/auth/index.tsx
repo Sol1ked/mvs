@@ -1,32 +1,33 @@
 import React, { useState } from "react"
 import styles from "./index.module.scss"
-import { AuthForm } from "../../components/auth-form"
 import { Tabs } from "../../components/tabs"
 import { Tab } from "../../components/tabs/tab"
+import { Login } from "../../features/login"
+import { Register } from "../../features/register"
 
 export const Auth = () => {
   const [selected, setSelected] = useState<string>("login")
 
   return (
     <div className={styles.auth}>
-      <Tabs selected={selected} setSelected={setSelected}>
-        <Tab
-          name="Регистрация"
-          label={"registration"}
-          selected={selected}
-          onClick={() => setSelected}
-        >
-          <h1>Рег</h1>
-        </Tab>
-        <Tab
-          name="Вход"
-          label={"login"}
-          selected={selected}
-          onClick={() => setSelected}
-        >
-          <h1>Вход</h1>
-        </Tab>
-      </Tabs>
+      <div className={styles.content}>
+        <Tabs selected={selected} setSelected={setSelected}>
+          <Tab
+            name="login"
+            label="Вход"
+            selected={selected}
+            setSelected={() => setSelected("login")}
+          ></Tab>
+          <Tab
+            name="registration"
+            label="Регистрация"
+            selected={selected}
+            setSelected={() => setSelected("registration")}
+          />
+        </Tabs>
+        {selected === "login" && <Login />}
+        {selected === "registration" && <Register />}
+      </div>
     </div>
   )
 }

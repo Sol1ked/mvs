@@ -3,13 +3,9 @@ import styles from "./index.module.scss"
 import { Link } from "react-router-dom"
 
 type Props = {
-  title: string
+  children: React.ReactNode
 }
 
-export const AuthForm: React.FC<Props> = ({ title }) => {
-  return (
-    <div className={styles.authForm}>
-      <h2>{title}</h2>
-    </div>
-  )
+export const AuthForm: React.FC<Props> = ({ children }) => {
+  return <form className={styles.authForm}>{children}</form>
 }

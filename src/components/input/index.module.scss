@@ -5,18 +5,22 @@
   background-color: transparent;
   width: 100%;
   font-size: 14px;
-  font-weight: 600;
 
   outline: none;
   border: none;
 
+  background-color: $gray-80;
+  padding: 8px;
+  border-radius: 10px;
+
   &::placeholder {
-    color: $gray-10;
+    color: $gray-60;
   }
 
   &:focus {
     &::placeholder {
-      color: $gray-50;
+      color: $white-10;
     }
+    outline: 2px solid $gray-60;
   }
 }

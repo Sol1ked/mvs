@@ -1,0 +1,8 @@
+@import "../../scss/variables";
+
+.tabs {
+  display: flex;
+  padding: 4px;
+  border-radius: 15px;
+  background-color: $gray-80;
+}

@@ -8,15 +8,12 @@ type Props = {
 }
 
 export const Tabs: React.FC<Props> = ({ selected, setSelected, children }) => {
-  console.log(selected)
-
   return (
     <div className={styles.tabs}>
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, {
             ...child.props,
-            selected: selected === child.props.label,
             onClick: () => setSelected(child.props.label),
           })
         }

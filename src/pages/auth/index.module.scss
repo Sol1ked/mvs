@@ -1,3 +1,5 @@
+@import "../../scss/variables";
+
 .auth {
   display: flex;
   justify-content: center;
@@ -6,3 +8,15 @@
   height: 100vh;
 }
 
+.content {
+  max-width: 350px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  background-color: $black-20;
+  padding: 12px;
+  border-radius: 15px;
+}
