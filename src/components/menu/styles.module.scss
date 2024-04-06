@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  height: auto;
 }
 
 .menuList {
@@ -51,11 +52,13 @@
 @media screen and (max-width: $media-2) {
   .menu {
     display: block;
+    width: 100%;
     position: fixed;
+
     bottom: 0;
     right: 0;
     z-index: 1;
-    width: 100%;
+
     backdrop-filter: blur(18px);
     padding: 8px 0;
 

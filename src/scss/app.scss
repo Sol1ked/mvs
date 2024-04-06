@@ -18,6 +18,12 @@ body {
 
 .wrapper {
   max-width: 1280px;
-  padding: 0 12px;
+  padding: 12px;
+  padding-top: 0;
+  padding-bottom: 65px;
   margin: 0 auto;
+}
+
+.menu {
+  display: none;
 }
