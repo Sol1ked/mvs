@@ -2,7 +2,7 @@ import React from "react"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
 import { AuthForm } from "../components/auth-form"
-import { useLoginMutation } from "../app/services/userApi"
+import { useGetCookiesQuery, useLoginMutation } from "../app/services/userApi"
 
 type Login = {
   email: string
@@ -11,6 +11,7 @@ type Login = {
 
 export const Login = () => {
   const [login, { isLoading }] = useLoginMutation()
+  const query = useGetCookiesQuery(null)
 
   const onSubmit = async (data: Login) => {
     try {
