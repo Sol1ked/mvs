@@ -4,9 +4,15 @@ type Props = {
   children: React.ReactNode
   onClick?: () => void
   typeButton: "full" | "text"
+  type: "submit"
 }
 
-export const Button: React.FC<Props> = ({ children, onClick, typeButton }) => {
+export const Button: React.FC<Props> = ({
+  children,
+  onClick,
+  typeButton,
+  type,
+}) => {
   let cardClass = `${styles.button}`
 
   switch (typeButton) {
@@ -19,7 +25,7 @@ export const Button: React.FC<Props> = ({ children, onClick, typeButton }) => {
   }
 
   return (
-    <button className={cardClass} onClick={onClick}>
+    <button className={cardClass} onClick={onClick} type={type}>
       {children}
     </button>
   )
