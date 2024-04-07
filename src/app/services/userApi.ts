@@ -1,29 +1,29 @@
 import axios from "axios"
 import { api } from "./api"
 
+const COOKIE_URL = "http://localhost:8000/sanctum/csrf-cookie"
+
+const getCookies = () => {
+  return axios.get(COOKIE_URL)
+}
+
 export const userApi = api.injectEndpoints({
   endpoints: builder => ({
-    getCookies: builder.query({
-      query: () => ({
-        url: "/sanctum/csrf-cookie",
-        method: "GET",
-      }),
-    }),
-    login: builder.mutation<
-      { token: string },
-      { email: string; password: string }
-    >({
-      query: userData => ({
-        url: "/login",
-        method: "POST",
-        body: userData,
-        credentials: "include",
-      }),
+    login: builder.mutation<{ login: string }, { password: string }>({
+      query: userData => (
+        getCookies(),
+        {
+          url: "/login",
+          method: "POST",
+          body: userData,
+          credentials: "include",
+        }
+      ),
     }),
   }),
 })
-export const { useLoginMutation, useGetCookiesQuery } = userApi
+export const { useLoginMutation } = userApi
 
 export const {
-  endpoints: { login, getCookies },
+  endpoints: { login },
 } = userApi
