@@ -11,86 +11,25 @@ type Login = {
 }
 
 export const Login = () => {
-  // useEffect(() => {
-  //   fetch("/sanctum/csrf-cookie")
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  //     .catch(error => {
-  //       console.error("Failed to fetch COOKIE_URL", error)
-  //     })
-  // }, [])
-  useEffect(() => {
-    axios
-      .get("/sanctum/csrf-cookie")
-      .then(() => {
-        axios
-          .post("/login", {
-            login: "molestias",
-            password: "password",
-          })
-          .then(response => {
-            console.log("Login successful", response.data)
-          })
-          .catch(error => {
-            console.error("Login failed", error)
-          })
-      })
-      .catch(error => {
-        console.error("Failed to fetch COOKIE_URL", error)
-      })
-  }, [])
-  // useEffect(() => {
-  //   fetch(COOKIE_URL)
-  //     .then(() => {
-  //       axios
-  //         .delete("/logout")
-  //         .then(response => {
-  //           console.log("Login successful", response.data)
-  //         })
-  //         .catch(error => {
-  //           console.error("Login failed", error)
-  //         })
-  //     })
-  //     .catch(error => {
-  //       console.error("Failed to fetch COOKIE_URL", error)
-  //     })
-  // }, [])
-  // const [login, { isLoading }] = useLoginMutation()
-  // const onSubmit = async (data: any) => {
-  //   try {
-  //     await fetch(COOKIE_URL).then(async () => await login(data))
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const [login, { isLoading }] = useLoginMutation()
 
-  // const handleSubmit = (e: any, data: any) => {
-  //   e.preventDefault()
-  //   onSubmit(data)
-  // }
+  const onSubmit = async (data: any) => {
+    try {
+      await login(data).unwrap()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
-      {/* <form
-        onSubmit={e =>
-          handleSubmit(e, {
-            email: "example@example.com",
-            password: "password",
-          })
-        }
-      >
-        <input type="text" />
-        <input type="text" />
-        <button type="submit">Вход</button>
-      </form> */}
+      <AuthForm onSubmit={onSubmit}>
+        <Input type={"name"} placeholder={"Логин"} />
+        <Input type={"name"} placeholder={"Пароль"} />
+        <Button type="submit" typeButton="full">
+          Войти
+        </Button>
+      </AuthForm>
     </>
-    // <AuthForm onSubmit={onSubmit}>
-    //   <Input type={"name"} placeholder={"Логин"} />
-    //   <Input type={"name"} placeholder={"Пароль"} />
-    //   <Button type="submit" typeButton="full">
-    //     Войти
-    //   </Button>
-    // </AuthForm>
   )
 }
