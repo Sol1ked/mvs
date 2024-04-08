@@ -12,8 +12,9 @@ type Login = {
 
 export const Login = () => {
   const [login, { isLoading }] = useLoginMutation()
+  
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: Login) => {
     try {
       await login(data).unwrap()
     } catch (error) {
