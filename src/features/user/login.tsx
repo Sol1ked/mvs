@@ -25,6 +25,8 @@ export const Login = () => {
     password: "",
   })
 
+  console.log(document.cookie)
+
   const onSubmit = async () => {
     try {
       await login(formData).unwrap()

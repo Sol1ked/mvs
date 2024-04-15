@@ -4,16 +4,10 @@ import { RootState } from "../../../../social/social-front/src/app/store"
 
 interface InitialState {
   user: any | null
-  isAuthenticated: boolean
-  users: any[] | null
-  current: any | null
 }
 
 const initialState: InitialState = {
   user: null,
-  isAuthenticated: false,
-  users: null,
-  current: null,
 }
 
 const slice = createSlice({
@@ -24,20 +18,22 @@ const slice = createSlice({
     resetUser: state => {
       state.user = null
     },
+    setUser: (state, action) => {
+      state.user = action.payload
+    },
   },
   extraReducers(builder) {
     builder.addMatcher(
       userApi.endpoints.login.matchFulfilled,
       (state, action) => {
-        console.log(action.payload)
+        console.log(action)
 
-        state.isAuthenticated = true
         state.user = action.payload
       },
     )
   },
 })
 
-export const { logout, resetUser } = slice.actions
+export const { logout, resetUser, setUser } = slice.actions
 export const selectUser = (state: RootState) => state.user.user
 export default slice.reducer

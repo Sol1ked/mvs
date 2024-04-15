@@ -8,6 +8,7 @@ import "./scss/app.scss"
 import { Movies } from "./pages/movies"
 import { Search } from "./pages/search"
 import { Auth } from "./pages/auth"
+import { AuthGuard } from "./features/user/authGuard"
 
 const router = createBrowserRouter([
   { path: "/auth", element: <Auth /> },
@@ -40,7 +41,9 @@ if (container) {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <AuthGuard>
+          <RouterProvider router={router} />
+        </AuthGuard>
       </Provider>
     </React.StrictMode>,
   )
