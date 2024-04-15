@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import styles from "./index.module.scss"
 import { Tabs } from "../../components/tabs"
 import { Tab } from "../../components/tabs/tab"
-import { Login } from "../../features/login"
-import { Register } from "../../features/register"
+import { Login } from "../../features/user/login"
+import { Register } from "../../features/user/register"
 
 export const Auth = () => {
   const [selected, setSelected] = useState<string>("login")
