@@ -3,6 +3,8 @@ import { Input } from "../../components/input"
 import { Button } from "../../components/button"
 import { AuthForm } from "../../components/auth-form"
 import {
+  useLazyCurrentUserQuery,
+  useLazyMoviesQuery,
   useLoginMutation,
   useLogoutUserMutation,
 } from "../../app/services/userApi"
@@ -24,12 +26,14 @@ export const Login = () => {
     login: "",
     password: "",
   })
-
-  console.log(document.cookie)
-
+  const [triggerCurrentQuery] = useLazyCurrentUserQuery()
+  const [triggerMovies] = useLazyMoviesQuery()
+  
   const onSubmit = async () => {
     try {
       await login(formData).unwrap()
+      await triggerCurrentQuery().unwrap()
+      await triggerMovies().unwrap()
     } catch (error) {
       if (hasErrorField(error)) {
         setError(error.data.message)

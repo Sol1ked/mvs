@@ -32,10 +32,7 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   headers: {
     "X-XSRF-TOKEN": token,
-    Accept: "application/json, text/plain, */*",
-    "Content-Type": "application/json",
-    "X-Requested-With": "XMLHttpRequest",
-  },
+  }
 })
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 })

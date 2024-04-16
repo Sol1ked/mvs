@@ -4,10 +4,12 @@ import { RootState } from "../../../../social/social-front/src/app/store"
 
 interface InitialState {
   user: any | null
+  isAuthenticated: boolean
 }
 
 const initialState: InitialState = {
   user: null,
+  isAuthenticated: false,
 }
 
 const slice = createSlice({
@@ -27,7 +29,7 @@ const slice = createSlice({
       userApi.endpoints.login.matchFulfilled,
       (state, action) => {
         console.log(action)
-
+        state.isAuthenticated = true
         state.user = action.payload
       },
     )

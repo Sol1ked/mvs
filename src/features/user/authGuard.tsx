@@ -7,10 +7,11 @@ export const AuthGuard = ({ children }: { children: JSX.Element }) => {
   const dispatch = useDispatch()
   const { data: currentUser, isLoading } = useCurrentUserQuery()
 
+
   useEffect(() => {
     if (currentUser) {
       dispatch(setUser(currentUser))
-    }
+    } 
   }, [currentUser, dispatch])
 
   if (isLoading) {

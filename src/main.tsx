@@ -41,9 +41,9 @@ if (container) {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <AuthGuard>
+        {/* <AuthGuard> */}
           <RouterProvider router={router} />
-        </AuthGuard>
+        {/* </AuthGuard> */}
       </Provider>
     </React.StrictMode>,
   )

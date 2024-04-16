@@ -4,7 +4,6 @@ export const userApi = api.injectEndpoints({
   endpoints: builder => ({
     login: builder.mutation<{ login: string }, { password: string }>({
       query: userData => (
-        console.log(userData),
         {
           url: "/login",
           method: "POST",
@@ -13,8 +12,14 @@ export const userApi = api.injectEndpoints({
       ),
     }),
     currentUser: builder.query<void, void>({
-      query: userData => ({
+      query: () => ({
         url: "/api/v1/profile",
+        method: "GET",
+      }),
+    }),
+    movies: builder.query<void, void>({
+      query: () => ({
+        url: "/api/v1/films",
         method: "GET",
       }),
     }),
@@ -31,6 +36,7 @@ export const {
   useCurrentUserQuery,
   useLazyCurrentUserQuery,
   useLogoutUserMutation,
+  useLazyMoviesQuery
 } = userApi
 
 export const {
