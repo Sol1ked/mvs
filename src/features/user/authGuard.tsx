@@ -4,15 +4,7 @@ import { setUser } from "./userSlice"
 import { useDispatch } from "react-redux"
 
 export const AuthGuard = ({ children }: { children: JSX.Element }) => {
-  const dispatch = useDispatch()
-  const { data: currentUser, isLoading } = useCurrentUserQuery()
-
-
-  useEffect(() => {
-    if (currentUser) {
-      dispatch(setUser(currentUser))
-    } 
-  }, [currentUser, dispatch])
+  const {isLoading} = useCurrentUserQuery()
 
   if (isLoading) {
     return <>Loading...</>

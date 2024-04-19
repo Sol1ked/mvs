@@ -7,6 +7,7 @@ const getCookie = async (cookieName: string): Promise<string> => {
     await axios.get("/sanctum/csrf-cookie")
 
     const cookieArray = document.cookie.split(";")
+    
     for (const cookie of cookieArray) {
       let cookieString = cookie.trim()
 
@@ -32,6 +33,9 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   headers: {
     "X-XSRF-TOKEN": token,
+    Accept: "application/json, text/plain, */*",
+    "Content-Type": "application/json",
+    "X-Requested-With": "XMLHttpRequest",
   }
 })
 

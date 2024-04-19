@@ -1,0 +1,30 @@
+@import "../../scss/variables";
+
+.header {
+  padding: 24px 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  max-width: 100%;
+}
+
+.header__profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 4px;
+
+  .header__profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  svg {
+    font-size: 28px;
+  }
+}

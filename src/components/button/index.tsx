@@ -4,7 +4,7 @@ type Props = {
   children: React.ReactNode
   onClick?: () => void
   typeButton: "full" | "text"
-  isLoading: boolean
+  isLoading?: boolean
   type: "submit"
 }
 

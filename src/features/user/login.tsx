@@ -4,7 +4,6 @@ import { Button } from "../../components/button"
 import { AuthForm } from "../../components/auth-form"
 import {
   useLazyCurrentUserQuery,
-  useLazyMoviesQuery,
   useLoginMutation,
   useLogoutUserMutation,
 } from "../../app/services/userApi"
@@ -12,6 +11,7 @@ import { hasErrorField } from "../../utils/has-error-field"
 import { ErrorMessage } from "../../components/error-message"
 import { BASE_URL } from "../../constants"
 import { SessionRestore } from "../../utils/session-restore"
+import { useNavigate } from "react-router-dom"
 
 type Login = {
   login: string
@@ -19,21 +19,23 @@ type Login = {
 }
 
 export const Login = () => {
-  const [login, { isLoading }] = useLoginMutation()
-  const [logout] = useLogoutUserMutation()
   const [error, setError] = useState<string>("")
   const [formData, setFormData] = useState<Login>({
     login: "",
     password: "",
   })
-  const [triggerCurrentQuery] = useLazyCurrentUserQuery()
-  const [triggerMovies] = useLazyMoviesQuery()
+
+  const navigate = useNavigate();
+
+  const [login, { isLoading }] = useLoginMutation()
+  const [logout] = useLogoutUserMutation()
+  const [triggerCurrentQuery] = useLazyCurrentUserQuery();
   
   const onSubmit = async () => {
     try {
       await login(formData).unwrap()
       await triggerCurrentQuery().unwrap()
-      await triggerMovies().unwrap()
+      navigate("/")
     } catch (error) {
       if (hasErrorField(error)) {
         setError(error.data.message)
