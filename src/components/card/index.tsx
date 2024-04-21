@@ -6,7 +6,7 @@ import styles from "./index.module.scss"
 type Props = {
   typeCard?: "default" | "watched" | "mini"
   movie: Movie
-  sizeSlider: number
+  sizeSlider?: number
 }
 
 export const Card: React.FC<Props> = ({ typeCard, movie, sizeSlider }) => {

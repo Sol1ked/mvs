@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { store } from "./app/store"
 import { Layout } from "./components/layout"
 import { AuthGuard } from "./features/user/authGuard"
+import { AllMovies } from "./pages/allMovies"
 import { Auth } from "./pages/auth"
 import { Movies } from "./pages/movies"
 import { Search } from "./pages/search"
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies",
-        element: <div>Movies</div>,
+        element: <AllMovies />,
       },
       {
         path: "/profile",
