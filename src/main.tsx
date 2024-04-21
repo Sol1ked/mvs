@@ -1,14 +1,14 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
-import { store } from "./app/store"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { store } from "./app/store"
 import { Layout } from "./components/layout"
-import "./scss/app.scss"
+import { AuthGuard } from "./features/user/authGuard"
+import { Auth } from "./pages/auth"
 import { Movies } from "./pages/movies"
 import { Search } from "./pages/search"
-import { Auth } from "./pages/auth"
-import { AuthGuard } from "./features/user/authGuard"
+import "./scss/app.scss"
 
 const router = createBrowserRouter([
   { path: "/auth", element: <Auth /> },

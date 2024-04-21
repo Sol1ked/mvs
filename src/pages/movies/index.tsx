@@ -7,76 +7,65 @@ const testMovies: any = [
   {
     id: 1,
     title: "Batman",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 2,
     title: "Batman2",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 3,
     title: "Batman3",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 4,
     title: "Batman4",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 5,
     title: "Batman5",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 6,
     title: "Batman6",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 7,
     title: "Batman7",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 8,
     title: "Batman8",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 9,
     title: "Batman9",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 10,
     title: "Batman10",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 11,
     title: "Batman11",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
   {
     id: 12,
     title: "Batman12",
-    imgSrc: test3,
-    desc: " Lorem ipsum dolor sit amet.",
+    poster: test3,
   },
 ]
+
 export const Movies = () => {
   return (
     <div className={styles.movies}>

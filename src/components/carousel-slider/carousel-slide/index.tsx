@@ -1,19 +1,24 @@
-import React from "react"
-import styles from "./index.module.scss"
+import { Movie } from "../../../app/types"
 import { Button } from "../../button"
+import styles from "./index.module.scss"
 
-export const CarouselSlide = ({ movie, sizeSlider }: any) => {
+type Props = {
+  movie: Movie
+}
+
+export const CarouselSlide = ({ movie }: Props) => {
   return (
     <div
       className={styles.slide}
       style={{
-        backgroundImage: `url(${movie.imgSrc})`,
+        backgroundImage: `url(${movie.poster})`,
       }}
     >
       <div className={styles.info}>
         <h1>{movie.title}</h1>
-        <p>{movie.desc}</p>
-        <Button>Смотреть</Button>
+        <Button typeButton={"full"} type={"submit"}>
+          Смотреть
+        </Button>
       </div>
     </div>
   )

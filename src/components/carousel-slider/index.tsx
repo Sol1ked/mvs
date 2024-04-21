@@ -1,11 +1,12 @@
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
-import { Card } from "../card"
-import styles from "./index.module.scss"
-import { CarouselSlide } from "./carousel-slide"
 import { useEffect, useRef, useState } from "react"
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
+import { Movie } from "../../app/types"
+import { Card } from "../card"
+import { CarouselSlide } from "./carousel-slide"
+import styles from "./index.module.scss"
 
 type Props = {
-  movies: any
+  movies: Movie[]
   typeSliderElem: "slide" | "card"
   typeCard?: "default" | "watched"
 }
@@ -113,13 +114,9 @@ export const CarouselSlider: React.FC<Props> = ({
         ref={ref}
         style={{ transform: `translate(${sizeSlider}px)` }}
       >
-        {movies.map((movie: any) =>
+        {movies.map((movie: Movie) =>
           typeSliderElem === "slide" ? (
-            <CarouselSlide
-              key={movie.id}
-              movie={movie}
-              sizeSlider={sizeSlider}
-            />
+            <CarouselSlide key={movie.id} movie={movie} />
           ) : (
             <Card
               typeCard={typeCard}

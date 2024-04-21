@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react"
-import { Input } from "../../components/input"
-import { Button } from "../../components/button"
-import { AuthForm } from "../../components/auth-form"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import {
   useLazyCurrentUserQuery,
   useLoginMutation,
-  useLogoutUserMutation,
 } from "../../app/services/userApi"
-import { hasErrorField } from "../../utils/has-error-field"
+import { AuthForm } from "../../components/auth-form"
+import { Button } from "../../components/button"
 import { ErrorMessage } from "../../components/error-message"
-import { BASE_URL } from "../../constants"
-import { SessionRestore } from "../../utils/session-restore"
-import { useNavigate } from "react-router-dom"
+import { Input } from "../../components/input"
+import { hasErrorField } from "../../utils/has-error-field"
 
 type Login = {
   login: string
@@ -25,12 +22,11 @@ export const Login = () => {
     password: "",
   })
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const [login, { isLoading }] = useLoginMutation()
-  const [logout] = useLogoutUserMutation()
-  const [triggerCurrentQuery] = useLazyCurrentUserQuery();
-  
+  const [triggerCurrentQuery] = useLazyCurrentUserQuery()
+
   const onSubmit = async () => {
     try {
       await login(formData).unwrap()
@@ -49,14 +45,14 @@ export const Login = () => {
         <Input
           type={"name"}
           placeholder={"Логин"}
-          onChange={(e: any) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, login: e.target.value })
           }
         />
         <Input
           type={"name"}
           placeholder={"Пароль"}
-          onChange={(e: any) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, password: e.target.value })
           }
         />
@@ -65,14 +61,6 @@ export const Login = () => {
           Войти
         </Button>
       </AuthForm>
-      <Button
-        isLoading={isLoading}
-        type="submit"
-        onClick={async () => await logout()}
-        typeButton="full"
-      >
-        Выйти
-      </Button>
     </>
   )
 }

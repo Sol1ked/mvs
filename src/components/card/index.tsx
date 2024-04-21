@@ -1,10 +1,11 @@
 import React from "react"
 
+import { Movie } from "../../app/types"
 import styles from "./index.module.scss"
 
 type Props = {
   typeCard?: "default" | "watched" | "mini"
-  movie: any
+  movie: Movie
   sizeSlider: number
 }
 
@@ -22,10 +23,9 @@ export const Card: React.FC<Props> = ({ typeCard, movie, sizeSlider }) => {
 
   return (
     <div className={cardClass}>
-      <img src={movie.imgSrc} alt="movie-card" />
+      <img src={movie.poster} alt="movie-card" />
       <div className={styles.info}>
         <h3>{movie.title}</h3>
-        <p>{movie.desc}</p>
       </div>
     </div>
   )

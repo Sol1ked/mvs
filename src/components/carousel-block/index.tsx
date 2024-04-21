@@ -1,8 +1,9 @@
 import React from "react"
+import { Movie } from "../../app/types"
 import { CarouselSlider } from "../carousel-slider"
 
 type Props = {
-  movies: any
+  movies: Movie[]
   typeSliderElem: "slide" | "card"
   typeCard?: "default" | "watched"
   title: string

@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { userApi } from "../../app/services/userApi"
 import { RootState } from "../../../../social/social-front/src/app/store"
+import { userApi } from "../../app/services/userApi"
+import { User } from "../../app/types"
 
 interface InitialState {
-  user: any | null
+  user: User | null
   isAuthenticated: boolean
+  current: User | null
 }
 
 const initialState: InitialState = {
   user: null,
   isAuthenticated: false,
+  current: null,
 }
 
 const slice = createSlice({
@@ -20,29 +23,24 @@ const slice = createSlice({
     resetUser: state => {
       state.user = null
     },
-    setUser: (state, action) => {
-      state.user = action.payload
-    },
   },
   extraReducers(builder) {
     builder
+      .addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
+        state.isAuthenticated = true
+      })
       .addMatcher(
-      userApi.endpoints.login.matchFulfilled,
-      (state, action) => {
-        state.isAuthenticated = true
-        state.user = action.payload
-      },
-    )
-    .addMatcher(
-      userApi.endpoints.currentUser.matchFulfilled,
-      (state, action) => {
-        state.isAuthenticated = true
-        state.user = action.payload
-      },
-    )
+        userApi.endpoints.currentUser.matchFulfilled,
+        (state, action) => {
+          state.isAuthenticated = true
+          state.current = action.payload
+        },
+      )
   },
 })
 
-export const { logout, resetUser, setUser } = slice.actions
+export const { logout, resetUser } = slice.actions
 export const selectUser = (state: RootState) => state.user.user
+export const selectIsAuthenticated = (state: RootState) =>
+  state.user.isAuthenticated
 export default slice.reducer
