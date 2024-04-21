@@ -43,9 +43,11 @@ export const Header = () => {
             </Link>
           </div>
         ) : (
-          <Button typeButton={"full"} type={"submit"}>
-            <Link to="/auth">Войти</Link>
-          </Button>
+          <Link to="/auth">
+            <Button typeButton={"full"} type={"submit"}>
+              Войти
+            </Button>
+          </Link>
         )}
       </div>
     </div>

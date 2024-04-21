@@ -1,7 +1,14 @@
+import { useSelector } from "react-redux"
+import {
+  useBigRatingMoviesQuery,
+  useNewMoviesQuery,
+  useWatchedMoviesQuery,
+} from "../../app/services/movieApi"
 import test3 from "../../assets/images/test4.jpg"
 import { CarouselBlock } from "../../components/carousel-block"
 import { CarouselSlider } from "../../components/carousel-slider"
-import styles from "./index.module.scss"
+import { selectIsAuthenticated } from "../../features/user/userSlice"
+import "./index.scss"
 
 const testMovies: any = [
   {
@@ -67,17 +74,33 @@ const testMovies: any = [
 ]
 
 export const Movies = () => {
+  const isAuthenticated = useSelector(selectIsAuthenticated)
+
+  const { data: newMovies } = useNewMoviesQuery()
+  const { data: watchedMovies } = useWatchedMoviesQuery()
+  const { data: bigRatingMovies } = useBigRatingMoviesQuery()
+
   return (
-    <div className={styles.movies}>
-      <CarouselSlider movies={testMovies} typeSliderElem={"slide"} />
-      <CarouselBlock
-        movies={testMovies}
-        typeSliderElem={"card"}
-        typeCard={"watched"}
-        title={"Вы смотрели"}
+    <div className="movies">
+      <CarouselSlider
+        movies={newMovies || testMovies}
+        typeSliderElem={"slide"}
+        //Добавить скелетон вместо testMovies
       />
+      {isAuthenticated && (
+        <>
+          <CarouselBlock
+            movies={watchedMovies || testMovies}
+            //Добавить скелетон вместо testMovies
+            typeSliderElem={"card"}
+            typeCard={"watched"}
+            title={"Вы смотрели"}
+          />
+        </>
+      )}
       <CarouselBlock
-        movies={testMovies}
+        movies={bigRatingMovies || testMovies}
+        //Добавить скелетон вместо testMovies
         typeSliderElem={"card"}
         typeCard={"default"}
         title={"Для вас"}
