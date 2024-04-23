@@ -3,19 +3,14 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 import { Movie } from "../../app/types"
 import { Card } from "../card"
 import { CarouselSlide } from "./carousel-slide"
-import styles from "./index.module.scss"
+import "./index.scss"
 
 type Props = {
   movies: Movie[]
   typeSliderElem: "slide" | "card"
-  typeCard?: "default" | "watched"
 }
 
-export const CarouselSlider: React.FC<Props> = ({
-  movies,
-  typeSliderElem,
-  typeCard,
-}) => {
+export const CarouselSlider: React.FC<Props> = ({ movies, typeSliderElem }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [slideWidth, setSlideWidth] = useState(0)
   const [sizeSlider, setSizeSlider] = useState(0)
@@ -25,7 +20,7 @@ export const CarouselSlider: React.FC<Props> = ({
   useEffect(() => {
     const updateSlideWidth = () => {
       if (ref.current) {
-        setSlideWidth(ref.current.clientWidth)
+        setSlideWidth(ref.current?.clientWidth)
         setSizeSlider(0)
       }
     }
@@ -51,7 +46,7 @@ export const CarouselSlider: React.FC<Props> = ({
     return (
       ref &&
       ref.current &&
-      ref.current.children[0].className.includes(className)
+      ref.current.children[0]?.className.includes(className)
     )
   }
 
@@ -76,6 +71,10 @@ export const CarouselSlider: React.FC<Props> = ({
     }
   }
 
+  if (ref.current) {
+    console.log(ref.current.children[0]?.className)
+  }
+
   const prevSlide = () => {
     if (!disableButtons) {
       setSizeSlider(prevSizeSlider => prevSizeSlider + calculateSlideWidth())
@@ -92,15 +91,15 @@ export const CarouselSlider: React.FC<Props> = ({
     }
   }
 
-  const isMobile = ref.current ? ref.current.clientWidth <= 400 : 0
+  const isMobile = ref.current ? ref.current?.clientWidth <= 400 : 0
 
   const calculateTotalWidth = () => {
     return ref.current
-      ? ref.current.clientWidth *
+      ? ref.current?.clientWidth *
           Math.floor(
-            ((ref.current?.children[0].clientWidth + gapSize) *
+            ((ref.current?.children[0]?.clientWidth + gapSize) *
               (isMobile || isSlide ? movies.length - 1 : movies.length)) /
-              ref.current.clientWidth,
+              ref.current?.clientWidth,
           )
       : 0
   }
@@ -108,9 +107,9 @@ export const CarouselSlider: React.FC<Props> = ({
   const totalWidth = calculateTotalWidth()
 
   return (
-    <div className={styles.movies}>
+    <div className="carousel-slider">
       <div
-        className={styles.container}
+        className="carousel-slider__container"
         ref={ref}
         style={{ transform: `translate(${sizeSlider}px)` }}
       >
@@ -118,17 +117,12 @@ export const CarouselSlider: React.FC<Props> = ({
           typeSliderElem === "slide" ? (
             <CarouselSlide key={movie.id} movie={movie} />
           ) : (
-            <Card
-              typeCard={typeCard}
-              key={movie.id}
-              movie={movie}
-              sizeSlider={sizeSlider}
-            />
+            <Card key={movie.id} movie={movie} sizeSlider={sizeSlider} />
           ),
         )}
       </div>
-      {ref.current && ref.current.clientWidth < totalWidth && (
-        <div className={styles.actions}>
+      {ref.current && ref.current?.clientWidth < totalWidth && (
+        <div className="carousel-slider__actions">
           <FaAngleLeft onClick={prevSlide} />
           <FaAngleRight onClick={nextSlide} />
         </div>

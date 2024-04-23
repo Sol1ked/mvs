@@ -5,8 +5,7 @@ import {
   useWatchedMoviesQuery,
 } from "../../app/services/movieApi"
 import test3 from "../../assets/images/test4.jpg"
-import { CarouselBlock } from "../../components/carousel-block"
-import { CarouselSlider } from "../../components/carousel-slider"
+import { MovieBlock } from "../../components/movie-block"
 import { selectIsAuthenticated } from "../../features/user/userSlice"
 import "./index.scss"
 
@@ -82,28 +81,25 @@ export const Movies = () => {
 
   return (
     <div className="movies">
-      <CarouselSlider
-        movies={newMovies || testMovies}
+      <MovieBlock
+        moviesArray={newMovies || []}
+        typeBlock={"slider"}
         typeSliderElem={"slide"}
-        //Добавить скелетон вместо testMovies
       />
       {isAuthenticated && (
-        <>
-          <CarouselBlock
-            movies={watchedMovies || testMovies}
-            //Добавить скелетон вместо testMovies
-            typeSliderElem={"card"}
-            typeCard={"watched"}
-            title={"Вы смотрели"}
-          />
-        </>
+        <MovieBlock
+          title={"Вы смотрели"}
+          moviesArray={watchedMovies || []}
+          typeBlock={"slider"}
+          typeSliderElem={"card"}
+        />
       )}
-      <CarouselBlock
-        movies={bigRatingMovies || testMovies}
-        //Добавить скелетон вместо testMovies
+
+      <MovieBlock
+        title={"Фильмы с большим рейтингом"}
+        moviesArray={bigRatingMovies || []}
+        typeBlock={"slider"}
         typeSliderElem={"card"}
-        typeCard={"default"}
-        title={"Для вас"}
       />
     </div>
   )

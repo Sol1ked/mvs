@@ -1,0 +1,33 @@
+.carousel-slider {
+  position: relative;
+  overflow: hidden;
+
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 32px;
+    transition: all 0.7s ease-in-out;
+  }
+
+  &__actions {
+    position: absolute;
+    top: 45%;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    svg {
+      font-size: 32px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: #000;
+      }
+    }
+  }
+}

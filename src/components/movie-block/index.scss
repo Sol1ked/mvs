@@ -1,0 +1,11 @@
+.movie-block {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 38px;
+  }
+}
