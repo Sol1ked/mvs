@@ -50,7 +50,7 @@ export const CarouselSlider: React.FC<Props> = ({ movies, typeSliderElem }) => {
     )
   }
 
-  const isSlide = isClassNameIncluded(ref, "_slide")
+  const isSlide = isClassNameIncluded(ref, "__slide")
 
   const calculateSlideWidth = () => {
     return ref.current
@@ -69,10 +69,6 @@ export const CarouselSlider: React.FC<Props> = ({ movies, typeSliderElem }) => {
     if (-sizeSlider >= totalWidth) {
       setSizeSlider(0)
     }
-  }
-
-  if (ref.current) {
-    console.log(ref.current.children[0]?.className)
   }
 
   const prevSlide = () => {
