@@ -1,16 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { RootState } from "../../../../social/social-front/src/app/store"
 import { userApi } from "../../app/services/userApi"
+import { RootState } from "../../app/store"
 import { User } from "../../app/types"
 
 interface InitialState {
-  user: User | null
   isAuthenticated: boolean
   current: User | null
 }
 
 const initialState: InitialState = {
-  user: null,
   isAuthenticated: false,
   current: null,
 }
@@ -21,7 +19,7 @@ const slice = createSlice({
   reducers: {
     logout: () => initialState,
     resetUser: state => {
-      state.user = null
+      state.current = null
     },
   },
   extraReducers(builder) {
@@ -40,7 +38,9 @@ const slice = createSlice({
 })
 
 export const { logout, resetUser } = slice.actions
-export const selectUser = (state: RootState) => state.user.user
+export default slice.reducer
+
 export const selectIsAuthenticated = (state: RootState) =>
   state.user.isAuthenticated
-export default slice.reducer
+
+export const selectCurrent = (state: RootState) => state.user.current
