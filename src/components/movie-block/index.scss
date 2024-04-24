@@ -1,7 +1,7 @@
 .movie-block {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  &__title {
+    margin-bottom: 32px;
+  }
 
   &__list {
     display: flex;

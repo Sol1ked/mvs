@@ -37,7 +37,7 @@ export const MovieBlock: React.FC<Props> = ({
 
   return (
     <div className="movie-block">
-      <h1 className="movie-block__title">{title}</h1>
+      {title && <h1 className="movie-block__title">{title}</h1>}
       {children}
     </div>
   )
