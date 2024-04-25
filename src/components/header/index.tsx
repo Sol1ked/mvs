@@ -21,9 +21,7 @@ export const Header = () => {
         <Menu />
         <div className="header__auth">
           {isAuthenticated ? (
-            <div className="header__profile">
-              <Profile />
-            </div>
+            <Profile />
           ) : (
             <Link to="/auth">
               <Button typeButton={"full"} type={"submit"}>

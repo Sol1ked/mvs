@@ -6,8 +6,6 @@ type Props = {
 }
 
 export const CarouselSlide = ({ movie }: Props) => {
-  console.log(movie)
-
   return (
     <div
       className="carousel-slider__slide"

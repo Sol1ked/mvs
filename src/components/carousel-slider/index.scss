@@ -19,17 +19,29 @@
 
     display: flex;
     justify-content: space-between;
+  }
+
+  &__action {
+    opacity: 0;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_active {
+      opacity: 1;
+    }
+
+    &:hover {
+      background: $black-20;
+      border-radius: 50%;
+    }
 
     svg {
       font-size: 32px;
-      text-align: center;
       cursor: pointer;
-      border-radius: 50%;
-      transition: all 0.3s ease-in-out;
 
-      &:hover {
-        background: #000;
-      }
+      transition: all 0.3s ease-in-out;
     }
   }
 
