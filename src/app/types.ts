@@ -35,7 +35,7 @@ export type Movie = {
   duration: string
   poster: string
   rating: Rating
-  genres: Genre
+  genres: Genre[]
 }
 
 export type Review = {
