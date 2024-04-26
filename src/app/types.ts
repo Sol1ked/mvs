@@ -28,7 +28,6 @@ export type Genre = {
 }
 
 export type Movie = {
-  map(arg0: (movie: any) => void): unknown
   id: number
   title: string
   production_year: string

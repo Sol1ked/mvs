@@ -1,90 +1,82 @@
-@import "../../scss/_variables.scss";
-
-.card {
-  box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.2);
-  width: 200px;
-  height: 100%;
+.movie-card {
+  display: flex;
+  flex-direction: column;
 
   &__image {
-    width: 200px;
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
     height: 274px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 8px;
+  }
+
+  &__top {
     position: relative;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       transform: scale(1.015);
+      transition: all 0.3s ease-in-out;
     }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 100%;
+    width: 200px;
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 21px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__year {
+    font-size: 16px;
   }
 
   &__overlay {
     position: absolute;
-    top: 0;
-
-    width: 200px;
-    height: 274px;
-
-    padding: 8px;
-
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    background-color: rgba(0, 0, 0, 0.835);
+    transition: opacity 0.5s ease;
+    opacity: 0;
 
-    background: rgba(0, 0, 0, 0.429);
-
-    &-rating {
-      font-size: 36px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    &-genres {
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-
-    &-genre {
-      margin-right: 4px;
+    &:hover {
+      opacity: 1;
     }
   }
 
-  &__overlay-actions {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 4px;
-  }
-
-  &__overlay-action {
-    display: flex;
-    font-size: 30px;
-  }
-
-  &__overlay-info {
+  &__info {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    flex-grow: 1;
   }
 
-  &__title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  &__rating {
+    font-size: 38px;
+    font-weight: bold;
   }
 
-  &__year {
-    color: $gray-70;
+  &__actions {
+    display: flex;
+    flex-direction: column;
   }
 
-  &_watched {
-    width: 300px;
-
-    img {
-      width: 300px;
-      height: 200px;
-    }
+  &__action {
+    font-size: 26px;
   }
 }

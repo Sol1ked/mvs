@@ -6,7 +6,6 @@
 
   &__container {
     display: flex;
-    justify-content: flex-start;
     gap: 32px;
     transition: all 0.7s ease-in-out;
   }
@@ -22,26 +21,28 @@
   }
 
   &__action {
-    opacity: 0;
-    padding: 2px;
+    padding: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    &_active {
-      opacity: 1;
-    }
-
-    &:hover {
-      background: $black-20;
-      border-radius: 50%;
-    }
+    transition: all 0.3s ease-in-out;
+    border-radius: 50%;
 
     svg {
+      width: 100%;
+      height: auto;
+      display: none;
       font-size: 32px;
-      cursor: pointer;
+    }
 
-      transition: all 0.3s ease-in-out;
+    &_active {
+      svg {
+        display: block;
+      }
+
+      &:hover {
+        background: $black-20;
+        transition: all 0.3s ease-in-out;
+      }
     }
   }
 

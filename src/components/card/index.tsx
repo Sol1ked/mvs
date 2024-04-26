@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 import { FaRegStar } from "react-icons/fa"
 import { MdFavoriteBorder } from "react-icons/md"
@@ -11,56 +11,39 @@ type Props = {
 }
 
 export const Card: React.FC<Props> = ({ movie }) => {
-  const [isHovered, setIsHovered] = useState(false)
-
-  const handleMouseEnter = () => {
-    setIsHovered(true)
-    console.log(movie)
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
-
   return (
-    <div
-      className="card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="card__container">
-        <img src={movie.poster} alt="movie-card" className="card__image" />
+    <div className="movie-card">
+      <div className="movie-card__top">
+        <img
+          src={movie.poster}
+          alt="movie-card"
+          className="movie-card__image"
+        />
 
-        {/* hover-card */}
-        <div className="card__overlay">
-          <div className="card__overlay-info">
-            <span className="card__overlay-rating">{movie?.rating.value}</span>
-            <span className="card__overlay-year">{movie.production_year}</span>
-            <span className="card__overlay-genres">
-              {movie.genres &&
-                movie.genres.map((genre: Genre) => (
-                  <span className="card__overlay-genre" key={genre.id}>
-                    {genre.name}
-                  </span>
-                ))}
-            </span>
-            <span className="card__overlay-duration">{movie.duration}</span>
+        <div className="movie-card__overlay">
+          <div className="movie-card__info">
+            <p className="movie-card__rating">{movie.rating.value}</p>
+            <p className="movie-card__genres">
+              {movie.genres.map((genre: Genre) => (
+                <p className="movie-card__genre">{genre.name}</p>
+              ))}
+            </p>
+            <p className="movie-card__duration">{movie.duration}</p>
           </div>
-
-          <div className="card__overlay-actions">
-            <div className="card__overlay-action">
+          <div className="movie-card__actions">
+            <div className="movie-card__action">
               <MdFavoriteBorder />
             </div>
-            <div className="card__overlay-action">
+            <div className="movie-card__action">
               <FaRegStar />
             </div>
           </div>
         </div>
-        {/* hover-card */}
-
-        <div className="card__info">
-          <h3 className="card__title">{movie.title}</h3>
-          <p className="card__year">{movie.production_year}</p>
+      </div>
+      <div className="movie-card__body">
+        <div className="movie-card__body-top">
+          <h3 className="movie-card__title">{movie.title}</h3>
+          <p className="movie-card__year">{movie.production_year}</p>
         </div>
       </div>
     </div>
