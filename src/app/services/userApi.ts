@@ -10,6 +10,29 @@ export const userApi = api.injectEndpoints({
         body: userData,
       }),
     }),
+    register: builder.mutation<
+      {
+        name: string
+        login: string
+        email: string
+        password: string
+        password_confirmation: string
+      },
+      {
+        name: string
+        login: string
+        email: string
+        password: string
+        password_confirmation: string
+      }
+    >({
+      query: userData => ({
+        url: "/register",
+        method: "POST",
+        body: userData,
+      }),
+    }),
+
     currentUser: builder.query<User, void>({
       query: () => ({
         url: "/api/v1/profile",
@@ -26,11 +49,12 @@ export const userApi = api.injectEndpoints({
 })
 export const {
   useLoginMutation,
+  useRegisterMutation,
   useCurrentUserQuery,
   useLazyCurrentUserQuery,
   useLogoutUserMutation,
 } = userApi
 
 export const {
-  endpoints: { login, currentUser, logoutUser },
+  endpoints: { login, register, currentUser, logoutUser },
 } = userApi

@@ -11,23 +11,34 @@ type Props = {
 }
 
 export const Card: React.FC<Props> = ({ movie }) => {
+  const rating = movie.rating.value
+
+  const isFirstPartSingleDigit = rating < 10
+  const firstPart = isFirstPartSingleDigit ? Math.floor(rating / 10) : 0
+  const secondPart = (isFirstPartSingleDigit ? rating % 10 : rating) + ","
+
   return (
-    <div className="movie-card">
+    <div className="movie-card" key={movie.id}>
       <div className="movie-card__top">
         <img
           src={movie.poster}
           alt="movie-card"
           className="movie-card__image"
         />
-
         <div className="movie-card__overlay">
           <div className="movie-card__info">
-            <p className="movie-card__rating">{movie.rating.value}</p>
-            <p className="movie-card__genres">
-              {movie.genres.map((genre: Genre) => (
-                <p className="movie-card__genre">{genre.name}</p>
+            <div className="movie-card__rating">
+              <p className="movie-card__rating-integer">{secondPart}</p>
+              <p className="movie-card__rating-fraction">{firstPart}</p>
+            </div>
+            <div className="movie-card__genres">
+              {movie.genres.map((genre: Genre, index) => (
+                <p className="movie-card__genre" key={genre.id}>
+                  {genre.name}
+                  {index !== movie.genres.length - 1 ? "," : ""}
+                </p>
               ))}
-            </p>
+            </div>
             <p className="movie-card__duration">{movie.duration}</p>
           </div>
           <div className="movie-card__actions">

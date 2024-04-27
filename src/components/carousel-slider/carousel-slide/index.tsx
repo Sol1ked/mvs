@@ -15,7 +15,7 @@ export const CarouselSlide = ({ movie }: Props) => {
     >
       <div className="carousel-slider__slide-info">
         <h1 className="carousel-slider__title">{movie.title}</h1>
-        <p className="carousel-slider__text">{movie.production_year} /</p>
+        <p className="carousel-slider__text">{movie.production_year}</p>
         <Button typeButton={"full"} type={"submit"}>
           Смотреть
         </Button>

@@ -5,9 +5,24 @@ import {
   useWatchedMoviesQuery,
 } from "../../app/services/movieApi"
 
+import { Movie } from "../../app/types"
 import { MovieBlock } from "../../components/movie-block"
 import { selectIsAuthenticated } from "../../features/user/userSlice"
 import "./index.scss"
+
+const movie: Movie = {
+  id: 10,
+  title: "Тест",
+  production_year: "2005",
+  duration: "02:32:00",
+  poster:
+    "https://www.soyuz.ru/public/uploads/files/2/7623281/2023042718541925ba70c02d.jpg",
+  rating: {
+    value: 5,
+    count: 1,
+  },
+  genres: [],
+}
 
 export const Movies = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated)

@@ -1,6 +1,7 @@
 .movie-card {
   display: flex;
   flex-direction: column;
+  max-width: 200px;
 
   &__image {
     display: block;
@@ -69,6 +70,16 @@
   &__rating {
     font-size: 38px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  &__genres {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    flex: 1 1 auto;
+    justify-content: flex-end;
   }
 
   &__actions {
@@ -78,5 +89,6 @@
 
   &__action {
     font-size: 26px;
+    cursor: pointer;
   }
 }
