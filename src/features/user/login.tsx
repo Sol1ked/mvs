@@ -43,14 +43,14 @@ export const Login = () => {
     <>
       <AuthForm onSubmit={onSubmit}>
         <Input
-          type="name"
+          type="text"
           placeholder="Логин"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, login: e.target.value })
           }
         />
         <Input
-          type="name"
+          type="password"
           placeholder="Пароль"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, password: e.target.value })

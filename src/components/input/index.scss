@@ -1,0 +1,53 @@
+@import "../../scss/variables";
+
+.input {
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    right: 2%;
+    top: 25%;
+  }
+
+  &__field {
+    width: 100%;
+
+    padding: 8px;
+
+    border-radius: 10px;
+
+    color: $white-90;
+    background-color: $gray-80;
+
+    font-size: 14px;
+    outline: none;
+    border: none;
+
+    &::placeholder {
+      color: $gray-60;
+    }
+
+    &:focus {
+      &::placeholder {
+        color: $white-10;
+      }
+      outline: 2px solid $gray-60;
+    }
+
+    &[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      height: 1em;
+      width: 1em;
+      border-radius: 50em;
+      background: url("../../assets/images/search.svg") no-repeat 50% 50%;
+      background-size: contain;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:focus::-webkit-search-cancel-button {
+      opacity: 0.3;
+      pointer-events: all;
+    }
+  }
+}

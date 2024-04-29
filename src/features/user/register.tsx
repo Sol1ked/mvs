@@ -48,14 +48,14 @@ export const Register = () => {
     <>
       <AuthForm onSubmit={onSubmit}>
         <Input
-          type="name"
+          type="text"
           placeholder="ФИО"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, name: e.target.value })
           }
         />
         <Input
-          type="name"
+          type="text"
           placeholder="Логин"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, login: e.target.value })
@@ -69,14 +69,14 @@ export const Register = () => {
           }
         />
         <Input
-          type="name"
+          type="password"
           placeholder="Пароль"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, password: e.target.value })
           }
         />
         <Input
-          type="name"
+          type="password"
           placeholder="Подтвердите пароль"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setFormData({ ...formData, password_confirmation: e.target.value })
