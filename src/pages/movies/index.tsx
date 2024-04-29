@@ -37,6 +37,7 @@ export const Movies = () => {
         moviesArray={newMovies || []}
         typeBlock={"slider"}
         typeSliderElem={"slide"}
+        countSkeleton={1}
       />
       {isAuthenticated && (
         <MovieBlock
@@ -44,6 +45,7 @@ export const Movies = () => {
           moviesArray={watchedMovies || []}
           typeBlock={"slider"}
           typeSliderElem={"card"}
+          countSkeleton={6}
         />
       )}
       <MovieBlock
@@ -51,6 +53,7 @@ export const Movies = () => {
         moviesArray={bigRatingMovies || []}
         typeBlock={"slider"}
         typeSliderElem={"card"}
+        countSkeleton={6}
       />
     </div>
   )

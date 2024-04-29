@@ -6,14 +6,13 @@ export const AllMovies = () => {
 
   return (
     <>
-      {allMovies && (
-        <MovieBlock
-          title={"Фильмы"}
-          moviesArray={allMovies}
-          typeCard={"default"}
-          typeBlock={"list"}
-        />
-      )}
+      <MovieBlock
+        title={"Фильмы с большим рейтингом"}
+        moviesArray={allMovies || []}
+        typeBlock={"slider"}
+        typeSliderElem={"card"}
+        countSkeleton={6}
+      />
     </>
   )
 }

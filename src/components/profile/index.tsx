@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
-import test from "../../assets/images/test.jpg"
 
 import { useState } from "react"
+import { CgProfile } from "react-icons/cg"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
 import { useLogoutUserMutation } from "../../app/services/userApi"
@@ -25,7 +25,7 @@ export const Profile = () => {
   return (
     <div className="profile" onClick={() => setIsOpen(!isOpen)}>
       <div className="profile__content">
-        <img className="profile__image" src={test} alt="profile-image" />
+        <CgProfile />
         <RiArrowDropDownLine />
       </div>
       <ProfilePopup isOpen={isOpen} handleLogout={handleLogout} />

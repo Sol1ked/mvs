@@ -1,11 +1,10 @@
-import { Movie } from "../types"
 import { api } from "./api"
 
 //Мб сделать разделение запросов по категориям, например фильм/категория
 
 export const movieApi = api.injectEndpoints({
   endpoints: builder => ({
-    allMovies: builder.query<Movie, void>({
+    allMovies: builder.query<void, void>({
       query: () => ({
         url: "api/v1/films",
         method: "GET",
@@ -19,7 +18,7 @@ export const movieApi = api.injectEndpoints({
     }),
     bigRatingMovies: builder.query<void, void>({
       query: () => ({
-        url: "api/v1/films/popular",
+        url: "api/v1/films/big-rating",
         method: "GET",
       }),
     }),

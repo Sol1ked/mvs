@@ -2,13 +2,15 @@ import React from "react"
 import { Movie } from "../../app/types"
 import { Card } from "../card"
 import { CarouselSlider } from "../carousel-slider"
+import { Skeleton } from "../skeleton"
 import "./index.scss"
 
 type Props = {
   title?: string
-  moviesArray: any
+  moviesArray: Movie[]
   typeBlock: "slider" | "list"
   typeSliderElem: "slide" | "card"
+  countSkeleton: number
 }
 
 export const MovieBlock: React.FC<Props> = ({
@@ -16,6 +18,7 @@ export const MovieBlock: React.FC<Props> = ({
   moviesArray,
   typeBlock,
   typeSliderElem,
+  countSkeleton,
 }) => {
   let children
 
@@ -27,18 +30,28 @@ export const MovieBlock: React.FC<Props> = ({
       break
     case "list":
       children = (
-        <div className="movie-block__list">
+        <>
           {moviesArray.map((movie: Movie) => (
             <Card movie={movie} />
           ))}
-        </div>
+        </>
       )
   }
 
   return (
-    <div className="movie-block">
-      {title && <h1 className="movie-block__title">{title}</h1>}
-      {children}
-    </div>
+    <>
+      <div className="movie-block">
+        <>
+          {title && <h1 className="movie-block__title">{title}</h1>}
+          <div className="movie-block__list">
+            {moviesArray.length ? (
+              children
+            ) : (
+              <Skeleton count={countSkeleton} typeSliderElem={typeSliderElem} />
+            )}
+          </div>
+        </>
+      </div>
+    </>
   )
 }
