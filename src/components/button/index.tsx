@@ -5,7 +5,7 @@ type Props = {
   onClick?: () => void
   typeButton: "full" | "text"
   isLoading?: boolean
-  type: "submit"
+  type: "submit" | "button"
 }
 
 export const Button: React.FC<Props> = ({

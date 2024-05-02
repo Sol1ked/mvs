@@ -10,6 +10,7 @@ import { Auth } from "./pages/auth"
 import { Movies } from "./pages/movies"
 import { Search } from "./pages/search"
 import "./scss/app.scss"
+import Movie from "./pages/movie"
 
 const router = createBrowserRouter([
   { path: "/auth", element: <Auth /> },
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: "/movies",
+        path: "/films",
         element: <AllMovies />,
+      },
+      {
+        path: "/films/:id",
+        element: <Movie />,
       },
       {
         path: "/profile",

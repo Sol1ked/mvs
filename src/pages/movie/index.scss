@@ -1,0 +1,71 @@
+@import "../../scss/_variables.scss";
+
+.movie {
+  &__specification {
+    display: flex;
+    padding: 64px 0;
+  }
+
+  &__poster {
+    width: 350px;
+    height: 100%;
+    margin-right: 64px;
+    border-radius: 15px;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__info-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    font-size: 48px;
+  }
+
+  &__favourite {
+    fill: $red;
+    font-size: 32px;
+  }
+
+  &__info-bottom {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+
+    button {
+      width: max-content;
+      padding: 8px 16px;
+    }
+  }
+
+  &__details {
+    display: flex;
+    column-gap: 32px;
+    font-size: 20px;
+  }
+  &__mark {
+    &::after {
+      padding-left: 32px; //Костыль
+      content: "|";
+    }
+  }
+
+  &__year {
+    &::after {
+      padding-left: 32px;
+      content: ".";
+    }
+  }
+}
+
+.player {
+  width: 100%;
+  height: 540px;
+  background-color: rgb(79, 79, 79);
+}

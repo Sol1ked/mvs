@@ -24,7 +24,7 @@ const menuItems: MenuItem[] = [
   {
     id: 2,
     category: "Фильмы",
-    link: "/movies",
+    link: "/films",
     icon: <MdLocalMovies />,
   },
   {
